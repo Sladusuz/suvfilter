@@ -29,7 +29,7 @@ const WELCOME =
   '💳 <b>0% — foizsiz muddatli to\'lov</b>\n' +
   '🎁 <b>Yetkazish, o\'rnatish, servis — BEPUL</b>\n' +
   '🎬 Demo xizmati\n' +
-  '🚚 Samarqand · Toshkent · Qarshi\n' + BOT_LINE + '\n' +
+  '🚚 O\'zbekiston bo\'ylab\n' + BOT_LINE + '\n' +
   'Toza suv — butun oila salomatligi 💙\nQuyidan tanlang 👇';
 
 const PAGES = [
@@ -43,7 +43,7 @@ const PAGES = [
   'Original Germaniya texnologiyasi.\n\n' +
   '🔧 Original ehtiyot qismlar\n🛠 Servis xizmati — <b>bepul</b>\n🎬 Demo: apparat ishlashini o\'zingiz ko\'rasiz',
   '💳 <b>Shartlar</b>  <code>4/4</code>\n' + BOT_LINE + '\n' +
-  '💰 Narxlar: <b>4 990 000 — 15 990 000</b> so\'m\n💳 <b>0%</b> — foizsiz muddatli to\'lov\n🎁 <b>Bepul:</b> yetkazib berish, o\'rnatish, servis\n📍 Samarqand, Toshkent, Qarshi\n\n' +
+  '💰 Narxlar: <b>4 990 000 — 15 990 000</b> so\'m\n💳 <b>0%</b> — foizsiz muddatli to\'lov\n🎁 <b>Bepul:</b> yetkazib berish, o\'rnatish, servis\n📍 O\'zbekiston bo\'ylab\n\n' +
   `Aniq narx va shartlar uchun: <b>${PHONE}</b>`,
 ];
 const pageKb = (i) => ({ inline_keyboard: [
@@ -55,7 +55,7 @@ const PAY =
   '💳 <b>FOIZSIZ MUDDATLI TO\'LOV</b>\n' + BOT_LINE + '\n' +
   '💰 Ustama foiz: <b>0%</b>\n' +
   '🎁 Yetkazish, o\'rnatish, servis: <b>BEPUL</b>\n' +
-  '📍 Samarqand · Toshkent · Qarshi\n' +
+  '📍 O\'zbekiston bo\'ylab\n' +
   '🎬 Avval demo — keyin qaror\n\n' +
   `Aniq shartlar va narxni operator aytadi:\n📞 <b>${PHONE}</b>`;
 
@@ -65,18 +65,18 @@ const FREE =
   '🚚 <b>Yetkazib berish</b> — bepul\n' +
   '🔧 <b>O\'rnatish</b> — bepul\n' +
   '🛠 <b>Servis xizmati</b> — bepul\n\n' +
-  '📍 Samarqand · Toshkent · Qarshi\n' +
+  '📍 O\'zbekiston bo\'ylab\n' +
   '💳 Va 0% foizsiz muddatli to\'lov\n' + BOT_LINE + '\n' +
   'Qo\'shimcha to\'lovlarsiz — apparatni xarid qilasiz, qolganini biz qilamiz 💙';
 
 const CONTACT =
   '📞 <b>ALOQA</b>\n' + BOT_LINE + '\n' +
-  `☎️ <b>${PHONE}</b>\n📍 Samarqand · Toshkent · Qarshi\n\n` +
+  `☎️ <b>${PHONE}</b>\n📍 O\'zbekiston bo\'ylab\n\n` +
   '📸 instagram.com/suv_filtir_samarqand\n✈️ t.me/auracebilonsamarqandpro';
 
 const FAQ = [
   ['💳 To\'lov qanday?', 'Foizsiz muddatli to\'lov mavjud. Aniq shartlarni operator tushuntiradi.'],
-  ['🚚 Qayerga yetkazasiz?', 'Samarqand, Toshkent va Qarshi bo\'ylab. Mahsulotni olgandan keyin yetkazib berish bepul.'],
+  ['🚚 Qayerga yetkazasiz?', 'O\'zbekiston bo\'ylab. Mahsulotni olgandan keyin yetkazib berish bepul.'],
   ['🎬 Sinab ko\'rsa bo\'ladimi?', 'Ha, demo xizmatimiz bor — apparat ishlashini o\'zingiz ko\'rasiz.'],
   ['⚙️ O\'rnatish va servis pullikmi?', 'Yo\'q, mahsulotni olgandan keyin yetkazib berish, o\'rnatish va servis xizmati bepul.'],
   ['💰 Narxi qancha?', `Narxlar modelga qarab 4 990 000 so'mdan 15 990 000 so'mgacha. Aniq narx uchun ${PHONE} raqamiga qo'ng'iroq qiling yoki zayavka qoldiring.`],

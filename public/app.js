@@ -123,7 +123,7 @@ form.addEventListener('submit', async (e) => {
   const TEL = '<a href="tel:+998933303575">+998 93 330 35 75</a>';
   const A = {
     tolov: 'Foizsiz muddatli to\'lov mavjud 💳. Aniq shartlarni operator tushuntiradi: ' + TEL,
-    yetkazish: 'Samarqand, Toshkent va Qarshi bo\'ylab yetkazib beramiz 🚚 Mahsulotni olgandan keyin yetkazib berish BEPUL!',
+    yetkazish: 'O\'zbekiston bo\'ylab yetkazib beramiz 🚚 Mahsulotni olgandan keyin yetkazib berish BEPUL!',
     demo: 'Demo xizmatimiz bor 🎬 — apparat ishlashini o\'zingiz ko\'rishingiz mumkin. Zayavka qoldiring, kelishamiz.',
     ornatish: 'O\'rnatish va servis xizmati BEPUL 🔧 Mahsulotni olgandan keyin mutaxassislarimiz o\'rnatib berishadi. Batafsil: ' + TEL,
     servis: 'Servis xizmati ham bepul 🛠 Mahsulotni olganingizdan keyin yetkazib berish, o\'rnatish va servis uchun alohida to\'lov yo\'q.',
