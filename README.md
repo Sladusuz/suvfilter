@@ -21,3 +21,6 @@ Deploydan keyin `/admin.html` ni oching: bot webhook o'zi ulanadi.
 - `public/` sayt va admin panel
 - `netlify/functions/` `requests` (forma), `admin` (login va panel API), `telegram` (bot webhook)
 - `netlify/lib/` umumiy kod: xotira, Telegram, bot dialogi
+
+## Deploy
+Muhit o'zgaruvchilari o'zgarganda saytni qayta deploy qilish kerak.
