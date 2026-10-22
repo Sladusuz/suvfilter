@@ -1,8 +1,7 @@
 {
   "name": "suvfilter",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
-  "type": "commonjs",
-  "scripts": { "start": "node --env-file=.env server.js" },
-  "dependencies": { "express": "^4.21.2" }
+  "type": "module",
+  "dependencies": { "@netlify/blobs": "^8.1.0" }
 }

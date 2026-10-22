@@ -58,9 +58,10 @@ async function load() {
   data = await api('/api/admin/requests'); show(true); render();
 }
 function render() {
-  $('info').innerHTML = data.chats
+  const bot = data.webhook ? '✅ Bot ulangan' : '⚠️ Bot webhook ulanmadi (token/env tekshiring)';
+  $('info').innerHTML = bot + '<br>' + (data.chats
     ? `✅ Telegram ulangan chatlar: <b>${data.chats}</b>`
-    : `⚠️ Telegram ulanmagan. Botga <code>/start ${esc(data.bindCode)}</code> deb yozing: <a href="https://t.me/suvfiltersamarqand_bot">@suvfiltersamarqand_bot</a>`;
+    : `⚠️ Zayavka oluvchi yo'q. Botga <code>/start ${esc(data.bindCode || '')}</code> deb yozing: <a href="https://t.me/suvfiltersamarqand_bot">@suvfiltersamarqand_bot</a>`);
   const counts = { all: data.requests.length };
   Object.keys(L).forEach((k) => counts[k] = data.requests.filter((r) => r.status === k).length);
   $('tabs').innerHTML = ['all', ...Object.keys(L)].map((k) =>
