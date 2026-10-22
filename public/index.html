@@ -4,51 +4,64 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Suv Filter Samarqand — Aura Cebilon Pro</title>
-<meta name="description" content="Aura Cebilon Pro suv tozalash apparati. Original Germaniya texnologiyasi, foizsiz muddatli to'lov. Samarqand, Toshkent, Qarshi.">
-<meta name="theme-color" content="#06203a">
+<meta name="description" content="Aura Cebilon Pro suv tozalash apparati. Original Germaniya texnologiyasi, foizsiz muddatli to'lov, demo xizmati. Samarqand, Toshkent, Qarshi.">
+<meta name="theme-color" content="#04152b">
+<meta property="og:title" content="Suv Filter Samarqand — Aura Cebilon Pro">
+<meta property="og:description" content="Suvni tozalashning yangi standarti. 0% muddatli to'lov.">
+<meta property="og:image" content="/product-hd.jpg">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E💧%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div class="progress" id="progress"></div>
 
 <header class="top" id="top">
   <div class="wrap bar">
-    <a class="logo" href="#hero"><span class="drop">💧</span> Suv Filter <em>Samarqand</em></a>
+    <a class="logo" href="#hero" aria-label="Suv Filter Samarqand">
+      <img src="product.jpg" alt="" width="34" height="34"><span>Suv Filter <em>Samarqand</em></span>
+    </a>
     <nav id="nav">
       <a href="#product">Mahsulot</a>
+      <a href="#how">Tozalash</a>
       <a href="#compare">Farq</a>
       <a href="#test">Suv testi</a>
-      <a href="#steps">Qanday ishlaydi</a>
+      <a href="#steps">Jarayon</a>
       <a href="#faq">Savollar</a>
-      <a href="#contact">Aloqa</a>
     </nav>
-    <a class="btn sm glow" href="#apply">Zayavka</a>
+    <a class="phone-link" href="tel:+998933303575">+998 93 330 35 75</a>
+    <a class="btn sm" href="#apply">Zayavka</a>
     <button class="burger" id="burger" aria-label="Menyu" aria-expanded="false"><i></i><i></i><i></i></button>
   </div>
 </header>
 
 <!-- HERO -->
 <section class="hero" id="hero">
+  <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
   <canvas id="bubbles" aria-hidden="true"></canvas>
   <div class="wrap hero-grid">
     <div class="hero-text">
-      <span class="pill reveal">🇩🇪 Original Germaniya texnologiyasi</span>
+      <span class="pill reveal"><b>🇩🇪</b> Original Germaniya texnologiyasi</span>
       <h1 class="reveal">Suvni tozalashning <span class="grad">yangi standarti</span></h1>
-      <p class="reveal">Aura Cebilon Pro bilan uyingizda har kuni toza, xavfsiz va mazali ichimlik suvi. <b>Foizsiz muddatli to'lov.</b></p>
+      <p class="lead reveal">Aura Cebilon Pro bilan uyingizda har kuni toza, xavfsiz va mazali ichimlik suvi. Foizsiz muddatli to'lov.</p>
       <div class="cta reveal">
-        <a class="btn glow" href="#apply">Buyurtma berish →</a>
-        <a class="btn ghost" href="tel:+998933303575">📞 +998 93 330 35 75</a>
+        <a class="btn lg" href="#apply">Buyurtma berish <span>→</span></a>
+        <a class="btn ghost lg" href="#product">Mahsulot bilan tanishing</a>
       </div>
-      <ul class="mini reveal">
-        <li>✓ Demo xizmati</li><li>✓ Yetkazib berish</li><li>✓ 0% to'lov</li>
+      <ul class="trust reveal">
+        <li><b>0%</b><span>muddatli to'lov</span></li>
+        <li><b>3</b><span>shaharga yetkazish</span></li>
+        <li><b>Demo</b><span>xizmati bor</span></li>
       </ul>
     </div>
-    <div class="hero-visual reveal">
-      <div class="orb"></div>
-      <div class="tilt" id="tilt"><img src="product.jpg" alt="Aura Cebilon Pro suv tozalash apparati" width="390" height="387"></div>
-      <div class="chip c1">💧 Toza suv</div>
-      <div class="chip c2">🛡 Xavfsiz</div>
-      <div class="chip c3">😋 Mazali</div>
+    <div class="stage reveal" id="stage">
+      <div class="ring r1"></div><div class="ring r2"></div><div class="glow"></div>
+      <div class="tilt" id="tilt"><img src="product-hd.jpg" alt="Aura Cebilon Pro suv tozalash apparati" width="780" height="774" fetchpriority="high"></div>
+      <div class="glass g1"><i>💧</i><div><b>Toza suv</b><small>har kuni, har stakanda</small></div></div>
+      <div class="glass g2"><i>🛡</i><div><b>Xavfsiz</b><small>bolalar uchun ham</small></div></div>
+      <div class="glass g3"><i>😋</i><div><b>Mazali</b><small>ichimlikdan shirin</small></div></div>
     </div>
   </div>
   <svg class="waves" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
@@ -57,99 +70,114 @@
   </svg>
 </section>
 
-<!-- MARQUEE -->
-<div class="marquee" aria-hidden="true">
-  <div class="track">
-    <span>💧 Toza suv</span><span>🇩🇪 Germaniya texnologiyasi</span><span>💳 0% muddatli to'lov</span><span>🚚 Samarqand · Toshkent · Qarshi</span><span>🎬 Demo xizmati</span><span>🔧 Oson o'rnatish</span>
-    <span>💧 Toza suv</span><span>🇩🇪 Germaniya texnologiyasi</span><span>💳 0% muddatli to'lov</span><span>🚚 Samarqand · Toshkent · Qarshi</span><span>🎬 Demo xizmati</span><span>🔧 Oson o'rnatish</span>
-  </div>
-</div>
+<div class="marquee" aria-hidden="true"><div class="track">
+  <span>Toza suv</span><span>Germaniya texnologiyasi</span><span>0% muddatli to'lov</span><span>Samarqand · Toshkent · Qarshi</span><span>Demo xizmati</span><span>Oson o'rnatish</span>
+  <span>Toza suv</span><span>Germaniya texnologiyasi</span><span>0% muddatli to'lov</span><span>Samarqand · Toshkent · Qarshi</span><span>Demo xizmati</span><span>Oson o'rnatish</span>
+</div></div>
 
-<!-- STATS -->
-<section class="wrap stats">
-  <div class="stat reveal"><b><span data-count="0">0</span>%</b><small>muddatli to'lov foizi</small></div>
-  <div class="stat reveal"><b><span data-count="3">0</span></b><small>shaharga yetkazib beramiz</small></div>
-  <div class="stat reveal"><b><span data-count="7">0</span></b><small>afzallik bitta apparatda</small></div>
-  <div class="stat reveal"><b>🇩🇪</b><small>Germaniya texnologiyasi</small></div>
+<!-- PRODUCT SHOWCASE -->
+<section id="product" class="block wrap">
+  <div class="head reveal"><span class="eyebrow">Mahsulot</span><h2>Aura Cebilon Pro</h2>
+  <p>Zamonaviy suv tozalash apparati. Nuqtalarni bosing yoki ro'yxatdan tanlang.</p></div>
+  <div class="showcase">
+    <div class="show-stage reveal" id="showStage">
+      <img src="product-hd.jpg" alt="Aura Cebilon Pro apparati" width="780" height="774" loading="lazy">
+      <button class="hot on" style="--x:50%;--y:18%" data-i="0" aria-label="Ko'p bosqichli tozalash"><i>1</i></button>
+      <button class="hot" style="--x:82%;--y:44%" data-i="1" aria-label="Hid, tuz, zang"><i>2</i></button>
+      <button class="hot" style="--x:22%;--y:62%" data-i="2" aria-label="Mazali suv"><i>3</i></button>
+      <button class="hot" style="--x:68%;--y:82%" data-i="3" aria-label="Ixcham dizayn"><i>4</i></button>
+    </div>
+    <div class="feat-list" id="featList">
+      <button class="feat on reveal" data-i="0"><i>🌀</i><div><h3>Ko'p bosqichli tozalash</h3><p>Suv bir necha bosqichdan o'tib, ichishga tayyor bo'ladi.</p></div></button>
+      <button class="feat reveal" data-i="1"><i>🧪</i><div><h3>Hid, tuz va zang</h3><p>Begona hid, tuz va zang aralashmalaridan tozalaydi.</p></div></button>
+      <button class="feat reveal" data-i="2"><i>😋</i><div><h3>Mazali va xavfsiz</h3><p>Ichimlikdan shirin. Bolalar uchun ham xavfsiz.</p></div></button>
+      <button class="feat reveal" data-i="3"><i>🏠</i><div><h3>Ixcham dizayn</h3><p>Oshxonaga mos zamonaviy ko'rinish, oson o'rnatish va qulay foydalanish.</p></div></button>
+    </div>
+  </div>
 </section>
 
-<!-- PRODUCT -->
-<section id="product" class="wrap block">
-  <div class="head reveal"><span class="eyebrow">Mahsulot</span><h2>Aura Cebilon Pro</h2>
-  <p>Zamonaviy suv tozalash apparati: toza, xavfsiz, sog'lom va oson o'rnatiladi.</p></div>
-  <div class="features">
-    <article class="feat reveal"><i>🌀</i><h3>Ko'p bosqichli tozalash</h3><p>Suv bir necha bosqichdan o'tib, ichishga tayyor bo'ladi.</p></article>
-    <article class="feat reveal"><i>🧪</i><h3>Hid, tuz, zang</h3><p>Suvdagi begona hid, tuz va zang aralashmalaridan tozalaydi.</p></article>
-    <article class="feat reveal"><i>😋</i><h3>Mazali suv</h3><p>Ichimlikdan shirin — choy va ovqat ta'mi ham yaxshilanadi.</p></article>
-    <article class="feat reveal"><i>👶</i><h3>Bolalar uchun xavfsiz</h3><p>Butun oila ishonch bilan ichadigan suv.</p></article>
-    <article class="feat reveal"><i>🏠</i><h3>Ixcham dizayn</h3><p>Oshxonaga mos zamonaviy ko'rinish, joyni tejaydi.</p></article>
-    <article class="feat reveal"><i>⚙️</i><h3>Oson o'rnatish</h3><p>Tez o'rnatiladi, foydalanish juda qulay.</p></article>
+<!-- HOW IT WORKS -->
+<section id="how" class="dark block">
+  <div class="wrap">
+    <div class="head reveal"><span class="eyebrow">Tozalash</span><h2>Suv uyingizgacha shunday <span class="grad">tozalanadi</span></h2></div>
+    <div class="pipe reveal">
+      <div class="line"><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="nodes">
+        <div class="node"><b>🚰</b><h3>Oddiy suv</h3><p>Hid, tuz, zang aralashmalari bilan</p></div>
+        <div class="node core"><img src="product.jpg" alt=""><h3>Aura Cebilon Pro</h3><p>Ko'p bosqichli tozalash</p></div>
+        <div class="node"><b>🥛</b><h3>Toza suv</h3><p>Tiniq, mazali, xavfsiz</p></div>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- BEFORE / AFTER -->
-<section id="compare" class="dark block">
-  <div class="wrap">
-    <div class="head reveal"><span class="eyebrow">Farqni ko'ring</span><h2>Oddiy suv va <span class="grad">Cebilon suvi</span></h2>
-    <p>Slayderni suring: chapda — hid, tuz va zangli suv, o'ngda — tozalangan suv.</p></div>
-    <div class="ba reveal" id="ba" style="--pos:50%">
-      <div class="ba-side dirty"><div class="glass"><span></span></div><b>Oddiy suv</b><ul><li>Hid va noxush ta'm</li><li>Tuz va zang</li><li>Choy ustida parda</li></ul></div>
-      <div class="ba-side clean"><div class="glass"><span></span></div><b>Cebilon suvi</b><ul><li>Toza va tiniq</li><li>Yoqimli ta'm</li><li>Butun oila uchun</li></ul></div>
-      <div class="ba-handle"><span>⇄</span></div>
-      <input type="range" min="5" max="95" value="50" id="baRange" aria-label="Oddiy suv va tozalangan suvni solishtirish">
-    </div>
+<section id="compare" class="block wrap">
+  <div class="head reveal"><span class="eyebrow">Farqni ko'ring</span><h2>Oddiy suv va <span class="grad">Cebilon suvi</span></h2>
+  <p>Slayderni suring: chapda oddiy suv, o'ngda tozalangan suv.</p></div>
+  <div class="ba reveal" id="ba" style="--pos:50%">
+    <div class="ba-side dirty"><div class="glass-cup"><span></span></div><b>Oddiy suv</b><ul><li>Hid va noxush ta'm</li><li>Tuz va zang</li><li>Choy ustida parda</li></ul></div>
+    <div class="ba-side clean"><div class="glass-cup"><span></span></div><b>Cebilon suvi</b><ul><li>Toza va tiniq</li><li>Yoqimli ta'm</li><li>Butun oila uchun</li></ul></div>
+    <div class="ba-handle"><span>⇄</span></div>
+    <input type="range" min="5" max="95" value="50" id="baRange" aria-label="Oddiy suv va tozalangan suvni solishtirish">
   </div>
 </section>
 
 <!-- WATER TEST -->
-<section id="test" class="wrap block">
-  <div class="head reveal"><span class="eyebrow">Aqlli maslahat</span><h2>Suvingizda qanday muammo bor?</h2>
-  <p>Belgilang — biz sizga mos yechimni aytamiz.</p></div>
-  <div class="quiz reveal">
-    <div class="opts" id="opts">
-      <label><input type="checkbox" value="Noxush hid"><span>🤢 Noxush hid</span></label>
-      <label><input type="checkbox" value="Tuzli, qattiq suv"><span>🧂 Tuzli, qattiq suv</span></label>
-      <label><input type="checkbox" value="Zang / sariq rang"><span>🟠 Zang, sariq rang</span></label>
-      <label><input type="checkbox" value="Loyqa"><span>🌫 Loyqa</span></label>
-      <label><input type="checkbox" value="Choynak / idishda oq qatlam"><span>🫖 Idishda oq qatlam</span></label>
-      <label><input type="checkbox" value="Mazasi yoqmaydi"><span>😕 Mazasi yoqmaydi</span></label>
-    </div>
-    <div class="result" id="result" aria-live="polite">
-      <div class="meter"><i id="meterBar"></i></div>
-      <p id="resultText">Muammolarni belgilang — natija shu yerda chiqadi.</p>
-      <button class="btn glow" id="quizBtn" disabled>Bepul maslahat olish</button>
+<section id="test" class="alt block">
+  <div class="wrap">
+    <div class="head reveal"><span class="eyebrow">Aqlli maslahat</span><h2>Suvingizda qanday muammo bor?</h2>
+    <p>Belgilang. Biz sizga mos yechimni aytamiz.</p></div>
+    <div class="quiz reveal">
+      <div class="opts" id="opts">
+        <label><input type="checkbox" value="Noxush hid"><span>🤢 Noxush hid</span></label>
+        <label><input type="checkbox" value="Tuzli, qattiq suv"><span>🧂 Tuzli, qattiq suv</span></label>
+        <label><input type="checkbox" value="Zang / sariq rang"><span>🟠 Zang, sariq rang</span></label>
+        <label><input type="checkbox" value="Loyqa"><span>🌫 Loyqa</span></label>
+        <label><input type="checkbox" value="Choynak / idishda oq qatlam"><span>🫖 Idishda oq qatlam</span></label>
+        <label><input type="checkbox" value="Mazasi yoqmaydi"><span>😕 Mazasi yoqmaydi</span></label>
+      </div>
+      <div class="result" id="result" aria-live="polite">
+        <img class="res-img" src="product.jpg" alt="" width="390" height="387" loading="lazy">
+        <div class="meter"><i id="meterBar"></i></div>
+        <p id="resultText">Muammolarni belgilang, natija shu yerda chiqadi.</p>
+        <button class="btn" id="quizBtn" disabled>Bepul maslahat olish</button>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- STEPS -->
-<section id="steps" class="alt block">
-  <div class="wrap">
-    <div class="head reveal"><span class="eyebrow">Jarayon</span><h2>Qanday ishlaymiz</h2></div>
-    <ol class="steps">
-      <li class="reveal"><b>1</b><h3>Zayavka</h3><p>Saytda yoki botda zayavka qoldirasiz.</p></li>
-      <li class="reveal"><b>2</b><h3>Bog'lanamiz</h3><p>Tez orada qo'ng'iroq qilib, savollaringizga javob beramiz.</p></li>
-      <li class="reveal"><b>3</b><h3>Demo</h3><p>Apparat ishlashini o'zingiz ko'rasiz.</p></li>
-      <li class="reveal"><b>4</b><h3>O'rnatish</h3><p>Yetkazib beramiz va o'rnatamiz. To'lov — foizsiz bo'lib.</p></li>
-    </ol>
-  </div>
+<section id="steps" class="block wrap">
+  <div class="head reveal"><span class="eyebrow">Jarayon</span><h2>Qanday ishlaymiz</h2></div>
+  <ol class="steps">
+    <li class="reveal"><b>1</b><h3>Zayavka</h3><p>Saytda yoki botda zayavka qoldirasiz.</p></li>
+    <li class="reveal"><b>2</b><h3>Bog'lanamiz</h3><p>Tez orada qo'ng'iroq qilib, savollaringizga javob beramiz.</p></li>
+    <li class="reveal"><b>3</b><h3>Demo</h3><p>Apparat ishlashini o'zingiz ko'rasiz.</p></li>
+    <li class="reveal"><b>4</b><h3>O'rnatish</h3><p>Yetkazib beramiz va o'rnatamiz. To'lov foizsiz bo'lib.</p></li>
+  </ol>
 </section>
 
-<!-- INSTALLMENT BANNER -->
+<!-- PROMO -->
 <section class="wrap">
   <div class="promo reveal">
-    <div><span class="pill">Maxsus taklif</span><h2>Foizsiz muddatli to'lov</h2><p>Hoziroq to'liq summani to'lamasdan, toza suvga ega bo'ling.</p></div>
-    <a class="btn light" href="#apply">Shartlarni bilish</a>
+    <div class="promo-text">
+      <span class="pill">Maxsus taklif</span>
+      <h2>0% — foizsiz muddatli to'lov</h2>
+      <p>To'liq summani birdaniga to'lamasdan, toza suvga ega bo'ling. Shartlarni operator tushuntiradi.</p>
+      <div class="cta"><a class="btn light" href="#apply">Shartlarni bilish</a><a class="btn ghost" href="tel:+998933303575">+998 93 330 35 75</a></div>
+    </div>
+    <img src="product-hd.jpg" alt="Aura Cebilon Pro" width="780" height="774" loading="lazy">
   </div>
 </section>
 
 <!-- FAQ -->
-<section id="faq" class="wrap block narrow">
+<section id="faq" class="block wrap narrow">
   <div class="head reveal"><span class="eyebrow">Savollar</span><h2>Ko'p so'raladigan savollar</h2></div>
   <div class="faq">
     <details class="reveal"><summary>To'lov qanday amalga oshiriladi?</summary><p>Foizsiz muddatli to'lov mavjud. Aniq shartlarni operatorimiz telefon orqali tushuntiradi.</p></details>
     <details class="reveal"><summary>Qaysi shaharlarga yetkazib berasiz?</summary><p>Samarqand, Toshkent va Qarshi bo'ylab.</p></details>
-    <details class="reveal"><summary>Apparatni avval ko'rib, sinab ko'rsa bo'ladimi?</summary><p>Ha, demo xizmatimiz bor — apparat ishlashini o'zingiz ko'rishingiz mumkin.</p></details>
+    <details class="reveal"><summary>Apparatni avval ko'rib, sinab ko'rsa bo'ladimi?</summary><p>Ha, demo xizmatimiz bor. Apparat ishlashini o'zingiz ko'rishingiz mumkin.</p></details>
     <details class="reveal"><summary>O'rnatish qiyinmi?</summary><p>Aura Cebilon oson o'rnatiladi va foydalanish qulay. Batafsil ma'lumotni operator beradi.</p></details>
     <details class="reveal"><summary>Narxi qancha?</summary><p>Aniq narx va to'lov jadvali uchun <a href="tel:+998933303575">+998 93 330 35 75</a> raqamiga qo'ng'iroq qiling yoki zayavka qoldiring.</p></details>
   </div>
@@ -157,46 +185,53 @@
 
 <!-- APPLY -->
 <section id="apply" class="dark block">
+  <div class="aurora small" aria-hidden="true"><i></i><i></i></div>
   <div class="wrap apply-grid">
-    <div class="reveal">
+    <div class="reveal apply-info">
       <span class="eyebrow">Zayavka</span>
-      <h2>Toza suv — bir qadam narida</h2>
+      <h2>Toza suv bir qadam narida</h2>
       <p>Ma'lumotlaringizni qoldiring, biz tez orada bog'lanamiz.</p>
+      <img class="apply-img" src="product-hd.jpg" alt="Aura Cebilon Pro" width="780" height="774" loading="lazy">
       <ul class="contacts">
-        <li>📞 <a href="tel:+998933303575">+998 93 330 35 75</a></li>
-        <li>✈️ <a href="https://t.me/suvfiltersamarqand_bot">Telegram bot orqali ham zayavka qoldiring</a></li>
-        <li>📍 Samarqand · Toshkent · Qarshi</li>
+        <li><b>📞</b><a href="tel:+998933303575">+998 93 330 35 75</a></li>
+        <li><b>✈️</b><a href="https://t.me/suvfiltersamarqand_bot">Telegram bot orqali zayavka</a></li>
+        <li><b>📍</b>Samarqand · Toshkent · Qarshi</li>
       </ul>
     </div>
     <form id="form" class="form reveal">
+      <h3>Buyurtma / zayavka</h3>
       <label>Ismingiz<input name="name" placeholder="Ism" required maxlength="100" autocomplete="name"></label>
       <label>Telefon<input name="phone" id="phone" type="tel" inputmode="tel" placeholder="+998 __ ___ __ __" required maxlength="30" autocomplete="tel"></label>
       <label>Xabar (ixtiyoriy)<textarea name="message" id="msg" placeholder="Savolingiz yoki suv muammosi" rows="3" maxlength="1000"></textarea></label>
       <input name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-      <button class="btn glow" type="submit">Yuborish →</button>
+      <button class="btn lg" type="submit">Yuborish <span>→</span></button>
       <p id="status" role="status"></p>
+      <small class="note">Ma'lumotlaringiz faqat siz bilan bog'lanish uchun ishlatiladi.</small>
     </form>
   </div>
 </section>
 
 <footer id="contact" class="foot">
-  <div class="wrap">
-    <b>💧 Suv Filter Samarqand</b>
-    <p><a href="tel:+998933303575">+998 93 330 35 75</a></p>
-    <p><a href="https://t.me/auracebilonsamarqandpro">Telegram kanal</a> · <a href="https://t.me/suvfiltersamarqand_bot">Bot</a> · <a href="https://instagram.com/suv_filtir_samarqand">Instagram</a></p>
-    <small>© <span id="year"></span> Suv Filter Samarqand</small>
+  <div class="wrap foot-grid">
+    <div><a class="logo" href="#hero"><img src="product.jpg" alt="" width="34" height="34"><span>Suv Filter <em>Samarqand</em></span></a>
+    <p>Aura Cebilon Pro: suvni tozalashning yangi standarti.</p></div>
+    <div><b>Aloqa</b><p><a href="tel:+998933303575">+998 93 330 35 75</a></p><p>Samarqand · Toshkent · Qarshi</p></div>
+    <div><b>Tarmoqlar</b><p><a href="https://t.me/auracebilonsamarqandpro">Telegram kanal</a></p><p><a href="https://t.me/suvfiltersamarqand_bot">Telegram bot</a></p><p><a href="https://instagram.com/suv_filtir_samarqand">Instagram</a></p></div>
   </div>
+  <div class="wrap copy">© <span id="year"></span> Suv Filter Samarqand</div>
 </footer>
 
-<!-- floating actions -->
-<div class="fab">
-  <a href="tel:+998933303575" class="fab-btn call" aria-label="Qo'ng'iroq qilish">📞</a>
-  <button class="fab-btn chat" id="chatOpen" aria-label="Yordamchi chat">💬</button>
+<div class="mbar">
+  <a class="btn ghost" href="tel:+998933303575">📞 Qo'ng'iroq</a>
+  <a class="btn" href="#apply">Zayavka →</a>
 </div>
 
-<!-- chat assistant -->
+<div class="fab">
+  <button class="fab-btn chat" id="chatOpen" aria-label="Yordamchi chat"><img src="product.jpg" alt="" width="56" height="56"><i>💬</i></button>
+</div>
+
 <aside class="chatbox" id="chatbox" aria-label="Yordamchi" hidden>
-  <header><b>💧 Yordamchi</b><button id="chatClose" aria-label="Yopish">✕</button></header>
+  <header><img src="product.jpg" alt="" width="34" height="34"><div><b>Yordamchi</b><small>Suv Filter Samarqand</small></div><button id="chatClose" aria-label="Yopish">✕</button></header>
   <div class="msgs" id="msgs"></div>
   <div class="quick" id="quick"></div>
   <form id="chatForm"><input id="chatInput" placeholder="Savolingizni yozing..." autocomplete="off"><button aria-label="Yuborish">➤</button></form>

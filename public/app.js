@@ -5,7 +5,12 @@ $('#year').textContent = new Date().getFullYear();
 
 /* header */
 const header = $('#top');
-const onScroll = () => header.classList.toggle('solid', scrollY > 30);
+const progress = $('#progress');
+const onScroll = () => {
+  header.classList.toggle('solid', scrollY > 30);
+  const h = document.documentElement.scrollHeight - innerHeight;
+  progress.style.width = (h > 0 ? (scrollY / h) * 100 : 0) + '%';
+};
 addEventListener('scroll', onScroll, { passive: true }); onScroll();
 const burger = $('#burger'), nav = $('#nav');
 const setMenu = (o) => { nav.classList.toggle('open', o); burger.setAttribute('aria-expanded', o); };
@@ -151,4 +156,15 @@ form.addEventListener('submit', async (e) => {
     const hit = rules.find(([re]) => re.test(v)); reply(hit ? hit[1] : null);
   };
   addEventListener('keydown', (e) => { if (e.key === 'Escape') open(false); });
+})();
+
+/* product showcase: hotspots <-> feature list */
+(() => {
+  const feats = $$('#featList .feat'), hots = $$('#showStage .hot');
+  let cur = 0, timer;
+  const set = (i) => { cur = i; feats.forEach((f, k) => f.classList.toggle('on', k === i)); hots.forEach((h, k) => h.classList.toggle('on', k === i)); };
+  const pick = (i) => { set(i); clearInterval(timer); };
+  feats.forEach((f) => { f.onclick = () => pick(+f.dataset.i); f.onmouseenter = () => pick(+f.dataset.i); });
+  hots.forEach((h) => { h.onclick = () => pick(+h.dataset.i); });
+  if (!reduce) timer = setInterval(() => set((cur + 1) % feats.length), 3500);
 })();
