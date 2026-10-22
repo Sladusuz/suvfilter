@@ -168,3 +168,10 @@ form.addEventListener('submit', async (e) => {
   hots.forEach((h) => { h.onclick = () => pick(+h.dataset.i); });
   if (!reduce) timer = setInterval(() => set((cur + 1) % feats.length), 3500);
 })();
+
+/* use the sharp product cut-out if product-pro.png has been added to the site */
+(() => {
+  const t = new Image();
+  t.onload = () => { $$('.pimg').forEach((i) => { i.src = 'product-pro.png'; }); document.body.classList.add('cut'); };
+  t.src = 'product-pro.png';
+})();
