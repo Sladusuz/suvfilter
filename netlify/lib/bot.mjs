@@ -108,8 +108,7 @@ const show = async (q, text, reply_markup) => {
 
 async function sendWelcome(chat_id) {
   await typing(chat_id);
-  let photo = SITE + '/product.jpg';
-  try { if ((await fetch(SITE + '/product-pro.png', { method: 'HEAD' })).ok) photo = SITE + '/product-pro.png'; } catch {}
+  const photo = SITE + '/welcome.jpg';
   try { await tg('sendPhoto', { chat_id, photo, caption: WELCOME, parse_mode: 'HTML', reply_markup: MAIN }); }
   catch { await send(chat_id, WELCOME, { reply_markup: MAIN }); }
   await send(chat_id, 'Pastdagi menyu har doim yoningizda 👇', { reply_markup: KB });
