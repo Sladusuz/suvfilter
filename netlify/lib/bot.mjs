@@ -8,12 +8,14 @@ const bar = (n, total) => '▰'.repeat(n) + '▱'.repeat(total - n);
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 const KB = { keyboard: [
-  [{ text: '📝 Zayavka' }, { text: '🚰 Mahsulot' }],
-  [{ text: '💧 Suv testi' }, { text: '💳 To\'lov' }],
-  [{ text: '📞 Aloqa' }, { text: '❓ Savollar' }],
+  [{ text: '📝 Zayavka' }, { text: '📦 Modellar' }],
+  [{ text: '🚰 Mahsulot' }, { text: '💧 Suv testi' }],
+  [{ text: '💳 To\'lov' }, { text: '📞 Aloqa' }],
+  [{ text: '❓ Savollar' }],
 ], resize_keyboard: true, is_persistent: true, input_field_placeholder: 'Menyudan tanlang 👇' };
 const MAIN = { inline_keyboard: [
   [{ text: '📝 Zayavka qoldirish', callback_data: 'apply' }],
+  [{ text: '📦 Modellar va narxlar', callback_data: 'models' }],
   [{ text: '🚰 Mahsulot', callback_data: 'info:0' }, { text: '💧 Suv testi', callback_data: 'quiz' }],
   [{ text: '💳 0% to\'lov', callback_data: 'pay' }, { text: '📞 Aloqa', callback_data: 'contact' }],
 ] };
@@ -23,6 +25,7 @@ const WELCOME =
   '💧 <b>SUV FILTER SAMARQAND</b>\n' + BOT_LINE + '\n' +
   '✨ <b>Aura Cebilon Pro</b>\n<i>Suvni tozalashning yangi standarti</i>\n\n' +
   '🇩🇪 Original Germaniya texnologiyasi\n' +
+  '💰 Narxlar: <b>4 990 000 — 14 990 000</b> so\'m\n' +
   '💳 <b>0% — foizsiz muddatli to\'lov</b>\n' +
   '🎁 <b>Yetkazish, o\'rnatish, servis — BEPUL</b>\n' +
   '🎬 Demo xizmati\n' +
@@ -40,7 +43,7 @@ const PAGES = [
   'Original Germaniya texnologiyasi.\n\n' +
   '🔧 Original ehtiyot qismlar\n🛠 Servis xizmati — <b>bepul</b>\n🎬 Demo: apparat ishlashini o\'zingiz ko\'rasiz',
   '💳 <b>Shartlar</b>  <code>4/4</code>\n' + BOT_LINE + '\n' +
-  '💰 <b>0%</b> — foizsiz muddatli to\'lov\n🎁 <b>Bepul:</b> yetkazib berish, o\'rnatish, servis\n📍 Samarqand, Toshkent, Qarshi\n\n' +
+  '💰 Narxlar: <b>4 990 000 — 14 990 000</b> so\'m\n💳 <b>0%</b> — foizsiz muddatli to\'lov\n🎁 <b>Bepul:</b> yetkazib berish, o\'rnatish, servis\n📍 Samarqand, Toshkent, Qarshi\n\n' +
   `Aniq narx va shartlar uchun: <b>${PHONE}</b>`,
 ];
 const pageKb = (i) => ({ inline_keyboard: [
@@ -66,7 +69,7 @@ const FAQ = [
   ['🚚 Qayerga yetkazasiz?', 'Samarqand, Toshkent va Qarshi bo\'ylab. Mahsulotni olgandan keyin yetkazib berish bepul.'],
   ['🎬 Sinab ko\'rsa bo\'ladimi?', 'Ha, demo xizmatimiz bor — apparat ishlashini o\'zingiz ko\'rasiz.'],
   ['⚙️ O\'rnatish va servis pullikmi?', 'Yo\'q, mahsulotni olgandan keyin yetkazib berish, o\'rnatish va servis xizmati bepul.'],
-  ['💰 Narxi qancha?', `Aniq narx uchun ${PHONE} raqamiga qo'ng'iroq qiling yoki zayavka qoldiring.`],
+  ['💰 Narxi qancha?', `Narxlar modelga qarab 4 990 000 so'mdan 14 990 000 so'mgacha. Aniq narx uchun ${PHONE} raqamiga qo'ng'iroq qiling yoki zayavka qoldiring.`],
 ];
 const faqKb = { inline_keyboard: [...FAQ.map(([q], i) => [{ text: q, callback_data: `faq:${i}` }]), [{ text: '🏠 Menyu', callback_data: 'menu' }]] };
 
@@ -128,12 +131,30 @@ async function finish(chat_id, from) {
   await send(chat_id, 'Yana nimadir kerakmi? 👇', { reply_markup: KB });
 }
 
-const MENU_TEXT = { '📝 Zayavka': 'apply', '🚰 Mahsulot': 'info', '💧 Suv testi': 'quiz', '💳 To\'lov': 'pay', '📞 Aloqa': 'contact', '❓ Savollar': 'faq' };
+const MODELS = [
+  ['eco', '<b>Cebilon Eco</b> — ixcham oq korpus'],
+  ['nature', '<b>Cebilon Nature</b> — qora-oq zamonaviy dizayn'],
+  ['black', '<b>Cebilon Black</b> — qora-oq dizayn, boshqaruv paneli bilan'],
+  ['pro', '<b>Cebilon Pro</b> — oq klassik korpus, tepasida displey'],
+  ['cebilup', '<b>Cebilup</b> — polda turadigan model'],
+];
+const MODELS_TEXT = '📦 <b>MODELLAR VA NARXLAR</b>\n' + BOT_LINE + '\n💰 <b>4 990 000 — 14 990 000</b> so\'m\n<i>Aniq narx modelga qarab belgilanadi.</i>\n\n💳 0% foizsiz muddatli to\'lov\n🎁 Yetkazish, o\'rnatish, servis — BEPUL\n\nModel tanlab, zayavka qoldiring 👇';
+
+async function sendModels(chat_id) {
+  await tg('sendChatAction', { chat_id, action: 'upload_photo' }).catch(() => {});
+  try {
+    await tg('sendMediaGroup', { chat_id, media: MODELS.map(([k, cap]) => ({ type: 'photo', media: `${SITE}/models/${k}.jpg`, caption: cap, parse_mode: 'HTML' })) });
+  } catch (e) { console.error('Media group:', e.message); }
+  await send(chat_id, MODELS_TEXT, { reply_markup: { inline_keyboard: [APPLY_BTN, [{ text: '🏠 Menyu', callback_data: 'menu' }]] } });
+}
+
+const MENU_TEXT = { '📝 Zayavka': 'apply', '📦 Modellar': 'models', '🚰 Mahsulot': 'info', '💧 Suv testi': 'quiz', '💳 To\'lov': 'pay', '📞 Aloqa': 'contact', '❓ Savollar': 'faq' };
 
 async function route(chat_id, action, q) {
   const reply = q ? (t, kb) => show(q, t, kb) : (t, kb) => send(chat_id, t, { reply_markup: kb });
   switch (action) {
     case 'apply': return startApply(chat_id);
+    case 'models': return sendModels(chat_id);
     case 'info': return reply(PAGES[0], pageKb(0));
     case 'pay': return reply(PAY, { inline_keyboard: [APPLY_BTN, [{ text: '🏠 Menyu', callback_data: 'menu' }]] });
     case 'contact': return reply(CONTACT, { inline_keyboard: [[{ text: '✈️ Telegram kanal', url: 'https://t.me/auracebilonsamarqandpro' }], APPLY_BTN] });

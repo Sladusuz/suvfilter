@@ -127,7 +127,8 @@ form.addEventListener('submit', async (e) => {
     demo: 'Demo xizmatimiz bor 🎬 — apparat ishlashini o\'zingiz ko\'rishingiz mumkin. Zayavka qoldiring, kelishamiz.',
     ornatish: 'O\'rnatish va servis xizmati BEPUL 🔧 Mahsulotni olgandan keyin mutaxassislarimiz o\'rnatib berishadi. Batafsil: ' + TEL,
     servis: 'Servis xizmati ham bepul 🛠 Mahsulotni olganingizdan keyin yetkazib berish, o\'rnatish va servis uchun alohida to\'lov yo\'q.',
-    narx: 'Aniq narx va to\'lov jadvali uchun qo\'ng\'iroq qiling: ' + TEL + ' yoki <a href="#apply">zayavka qoldiring</a>.',
+    narx: 'Narxlar modelga qarab <b>4 990 000</b> so\'mdan <b>14 990 000</b> so\'mgacha 💰 Foizsiz muddatli to\'lov bor. Aniq narx uchun: ' + TEL + ' yoki <a href="#apply">zayavka qoldiring</a>.',
+    model: 'Modellar: Cebilon Eco, Nature, Black, Pro va Cebilup 📦 <a href="#models">Modellarni ko\'rish</a>',
     mahsulot: 'Aura Cebilon Pro — ko\'p bosqichli tozalash, hid/tuz/zang aralashmalaridan tozalaydi, mazali va bolalar uchun xavfsiz suv beradi. Dizayni ixcham 🏠',
     aloqa: 'Telefon: ' + TEL + '<br>Telegram bot: <a href="https://t.me/suvfiltersamarqand_bot">@suvfiltersamarqand_bot</a><br>Instagram: <a href="https://instagram.com/suv_filtir_samarqand">suv_filtir_samarqand</a>',
     zayavka: 'Zayavka qoldirish uchun <a href="#apply">shu yerga bosing</a> yoki Telegram botdan foydalaning 📝',
@@ -138,6 +139,7 @@ form.addEventListener('submit', async (e) => {
     [/(demo|ko'?rsat|sina|tekshir)/i, 'demo'],
     [/(servis|xizmat|ta'?mir|bepul|tekin|qo'?shimcha)/i, 'servis'],
     [/(o'?rnat|montaj|qur)/i, 'ornatish'],
+    [/(model|eco|nature|black|cebilup|turlar|qaysi)/i, 'model'],
     [/(narx|qancha|pul|so'?m|necha|summa)/i, 'narx'],
     [/(filtr|apparat|cebilon|aura|mahsulot|xususiyat|nima)/i, 'mahsulot'],
     [/(aloqa|telefon|raqam|nomer|manzil|adres|instagram|telegram)/i, 'aloqa'],
@@ -147,7 +149,7 @@ form.addEventListener('submit', async (e) => {
   const esc = (s) => s.replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
   const reply = (key) => { const t = document.createElement('div'); t.className = 'm bot'; t.textContent = '...'; msgs.append(t); msgs.scrollTop = msgs.scrollHeight;
     setTimeout(() => { t.innerHTML = A[key] || 'Bu savol bo\'yicha operator aniq javob beradi: ' + TEL + ' yoki <a href="#apply">zayavka qoldiring</a>.'; msgs.scrollTop = msgs.scrollHeight; }, 450); };
-  const chips = [['To\'lov', 'tolov'], ['Bepul xizmatlar', 'servis'], ['Narx', 'narx'], ['Yetkazish', 'yetkazish'], ['Demo', 'demo'], ['Aloqa', 'aloqa']];
+  const chips = [['To\'lov', 'tolov'], ['Bepul xizmatlar', 'servis'], ['Modellar', 'model'], ['Narx', 'narx'], ['Yetkazish', 'yetkazish'], ['Demo', 'demo'], ['Aloqa', 'aloqa']];
   chips.forEach(([l, k]) => { const b = document.createElement('button'); b.textContent = l; b.onclick = () => { add(l, 'me'); reply(k); }; quick.append(b); });
   const open = (o) => { box.hidden = !o; if (o && !msgs.children.length) add('Salom! 👋 Men Suv Filter yordamchisiman. Savolingizni yozing yoki pastdagi tugmalardan tanlang.', 'bot'); if (o) input.focus(); };
   $('#chatOpen').onclick = () => open(box.hidden);
@@ -177,3 +179,10 @@ form.addEventListener('submit', async (e) => {
   t.onload = () => { $$('.pimg').forEach((i) => { i.src = 'product-pro.png'; }); document.body.classList.add('cut'); };
   t.src = 'product-pro.png';
 })();
+
+/* model cards: prefill the form with the chosen model */
+$$('.ask').forEach((b) => b.addEventListener('click', () => {
+  $('#msg').value = 'Model: ' + b.dataset.model + '. Narxini bilmoqchiman.';
+  $('#apply').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
+  setTimeout(() => $('#form [name=name]').focus({ preventScroll: true }), 600);
+}));
