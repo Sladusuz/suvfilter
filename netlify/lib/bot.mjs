@@ -9,13 +9,13 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 const KB = { keyboard: [
   [{ text: '📝 Zayavka' }, { text: '📦 Modellar' }],
-  [{ text: '🚰 Mahsulot' }, { text: '💧 Suv testi' }],
-  [{ text: '💳 To\'lov' }, { text: '📞 Aloqa' }],
-  [{ text: '❓ Savollar' }],
+  [{ text: '🎁 Bepul xizmatlar' }, { text: '🚰 Mahsulot' }],
+  [{ text: '💧 Suv testi' }, { text: '💳 To\'lov' }],
+  [{ text: '📞 Aloqa' }, { text: '❓ Savollar' }],
 ], resize_keyboard: true, is_persistent: true, input_field_placeholder: 'Menyudan tanlang 👇' };
 const MAIN = { inline_keyboard: [
   [{ text: '📝 Zayavka qoldirish', callback_data: 'apply' }],
-  [{ text: '📦 Modellar va narxlar', callback_data: 'models' }],
+  [{ text: '📦 Modellar va narxlar', callback_data: 'models' }, { text: '🎁 Bepul xizmatlar', callback_data: 'free' }],
   [{ text: '🚰 Mahsulot', callback_data: 'info:0' }, { text: '💧 Suv testi', callback_data: 'quiz' }],
   [{ text: '💳 0% to\'lov', callback_data: 'pay' }, { text: '📞 Aloqa', callback_data: 'contact' }],
 ] };
@@ -34,8 +34,8 @@ const WELCOME =
 
 const PAGES = [
   '🚰 <b>Aura Cebilon Pro</b>  <code>1/4</code>\n' + BOT_LINE + '\n' +
-  'Zamonaviy suv tozalash apparati.\n\n' +
-  '🌀 Ko\'p bosqichli tozalash tizimi\n🏠 Ixcham dizayn — oshxonaga mos\n⚙️ Oson o\'rnatish va qulay foydalanish',
+  'Zamonaviy suv tozalash apparati.\n💰 Narxlar: <b>4 990 000 — 14 990 000</b> so\'m (modelga qarab)\n\n' +
+  '🌀 Ko\'p bosqichli tozalash tizimi\n🏠 Ixcham dizayn — oshxonaga mos\n⚙️ Oson o\'rnatish va qulay foydalanish\n🎁 Yetkazish, o\'rnatish, servis — <b>bepul</b>',
   '🧪 <b>Tozalash sifati</b>  <code>2/4</code>\n' + BOT_LINE + '\n' +
   '✅ Begona hid\n✅ Tuz aralashmalari\n✅ Zang va sariq tus\n\n' +
   '😋 Natija: ichimlikdan shirin, mazali suv.\n👶 Bolalar uchun xavfsiz.',
@@ -58,6 +58,16 @@ const PAY =
   '📍 Samarqand · Toshkent · Qarshi\n' +
   '🎬 Avval demo — keyin qaror\n\n' +
   `Aniq shartlar va narxni operator aytadi:\n📞 <b>${PHONE}</b>`;
+
+const FREE =
+  '🎁 <b>BEPUL XIZMATLAR</b>\n' + BOT_LINE + '\n' +
+  'Mahsulotni olganingizdan keyin:\n\n' +
+  '🚚 <b>Yetkazib berish</b> — bepul\n' +
+  '🔧 <b>O\'rnatish</b> — bepul\n' +
+  '🛠 <b>Servis xizmati</b> — bepul\n\n' +
+  '📍 Samarqand · Toshkent · Qarshi\n' +
+  '💳 Va 0% foizsiz muddatli to\'lov\n' + BOT_LINE + '\n' +
+  'Qo\'shimcha to\'lovlarsiz — apparatni xarid qilasiz, qolganini biz qilamiz 💙';
 
 const CONTACT =
   '📞 <b>ALOQA</b>\n' + BOT_LINE + '\n' +
@@ -127,7 +137,7 @@ async function finish(chat_id, from) {
   await tg('editMessageText', { chat_id, message_id: wait.message_id, text: `⏳ Zayavka yuborilmoqda...\n${bar(3, 5)}` }).catch(() => {});
   r.sent = await notify(r).catch(() => false); await store.set(reqKey(id), r);
   await tg('editMessageText', { chat_id, message_id: wait.message_id, parse_mode: 'HTML',
-    text: `🎉 <b>Zayavka #${r.id} qabul qilindi!</b>\n▰▰▰▰▰\n\nRahmat, <b>${esc(s.name)}</b>! Tez orada <b>${esc(s.phone)}</b> raqamiga qo'ng'iroq qilamiz.\n\n💧 Toza suv — sog'lom oila!` }).catch(() => {});
+    text: `🎉 <b>Zayavka #${r.id} qabul qilindi!</b>\n▰▰▰▰▰\n\nRahmat, <b>${esc(s.name)}</b>! Tez orada <b>${esc(s.phone)}</b> raqamiga qo'ng'iroq qilamiz.\n\n🎁 Eslatma: yetkazib berish, o'rnatish va servis — bepul.\n💧 Toza suv — sog'lom oila!` }).catch(() => {});
   await send(chat_id, 'Yana nimadir kerakmi? 👇', { reply_markup: KB });
 }
 
@@ -148,13 +158,14 @@ async function sendModels(chat_id) {
   await send(chat_id, MODELS_TEXT, { reply_markup: { inline_keyboard: [APPLY_BTN, [{ text: '🏠 Menyu', callback_data: 'menu' }]] } });
 }
 
-const MENU_TEXT = { '📝 Zayavka': 'apply', '📦 Modellar': 'models', '🚰 Mahsulot': 'info', '💧 Suv testi': 'quiz', '💳 To\'lov': 'pay', '📞 Aloqa': 'contact', '❓ Savollar': 'faq' };
+const MENU_TEXT = { '📝 Zayavka': 'apply', '📦 Modellar': 'models', '🎁 Bepul xizmatlar': 'free', '🚰 Mahsulot': 'info', '💧 Suv testi': 'quiz', '💳 To\'lov': 'pay', '📞 Aloqa': 'contact', '❓ Savollar': 'faq' };
 
 async function route(chat_id, action, q) {
   const reply = q ? (t, kb) => show(q, t, kb) : (t, kb) => send(chat_id, t, { reply_markup: kb });
   switch (action) {
     case 'apply': return startApply(chat_id);
     case 'models': return sendModels(chat_id);
+    case 'free': return reply(FREE, { inline_keyboard: [[{ text: '📦 Modellar va narxlar', callback_data: 'models' }], APPLY_BTN, [{ text: '🏠 Menyu', callback_data: 'menu' }]] });
     case 'info': return reply(PAGES[0], pageKb(0));
     case 'pay': return reply(PAY, { inline_keyboard: [APPLY_BTN, [{ text: '🏠 Menyu', callback_data: 'menu' }]] });
     case 'contact': return reply(CONTACT, { inline_keyboard: [[{ text: '✈️ Telegram kanal', url: 'https://t.me/auracebilonsamarqandpro' }], APPLY_BTN] });

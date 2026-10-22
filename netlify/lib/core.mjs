@@ -52,17 +52,28 @@ export function isAdmin(req) {
 export const webhookSecret = () => crypto.createHash('sha256').update('wh:' + cfg().secret).digest('hex').slice(0, 40);
 
 // ---------- webhook ----------
+export const BOT_SHORT = '💧 Aura Cebilon: 4 990 000 so\'mdan. 0% to\'lov. Yetkazish, o\'rnatish, servis BEPUL!';
+export const BOT_ABOUT = 'Suv Filter Samarqand 💧\n\nAura Cebilon — suvni tozalashning yangi standarti. Original Germaniya texnologiyasi.\n\n💰 Narxlar: 4 990 000 — 14 990 000 so\'m\n💳 Foizsiz muddatli to\'lov\n🎁 Yetkazib berish, o\'rnatish va servis — BEPUL\n🎬 Demo xizmati\n\nBoshlash uchun START ni bosing 👇';
+
 export async function ensureWebhook(origin) {
   const url = origin + '/api/telegram';
   const info = await tg('getWebhookInfo', {});
-  if (info.url === url) return true;
+  if (info.url === url) {
+    // keep the bot profile texts current without re-registering the webhook
+    const s = await tg('getMyShortDescription', {}).catch(() => ({}));
+    if (s.short_description !== BOT_SHORT) {
+      await tg('setMyShortDescription', { short_description: BOT_SHORT }).catch(() => {});
+      await tg('setMyDescription', { description: BOT_ABOUT }).catch(() => {});
+    }
+    return true;
+  }
   await tg('setWebhook', { url, secret_token: webhookSecret(), allowed_updates: ['message', 'callback_query'] });
   await tg('setMyCommands', { commands: [
     { command: 'start', description: '💧 Bosh menyu' },
     { command: 'menu', description: '🏠 Menyuni ochish' },
     { command: 'cancel', description: '✖️ Zayavkani bekor qilish' },
   ] }).catch(() => {});
-  await tg('setMyShortDescription', { short_description: '💧 Aura Cebilon Pro — toza suv. 0% to\'lov. Zayavka qoldiring!' }).catch(() => {});
-  await tg('setMyDescription', { description: 'Suv Filter Samarqand 💧\n\nAura Cebilon Pro — suvni tozalashning yangi standarti. Original Germaniya texnologiyasi, foizsiz muddatli to\'lov, demo xizmati.\n\nBoshlash uchun START ni bosing 👇' }).catch(() => {});
+  await tg('setMyShortDescription', { short_description: BOT_SHORT }).catch(() => {});
+  await tg('setMyDescription', { description: BOT_ABOUT }).catch(() => {});
   return true;
 }
