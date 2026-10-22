@@ -24,6 +24,7 @@ const WELCOME =
   '✨ <b>Aura Cebilon Pro</b>\n<i>Suvni tozalashning yangi standarti</i>\n\n' +
   '🇩🇪 Original Germaniya texnologiyasi\n' +
   '💳 <b>0% — foizsiz muddatli to\'lov</b>\n' +
+  '🎁 <b>Yetkazish, o\'rnatish, servis — BEPUL</b>\n' +
   '🎬 Demo xizmati\n' +
   '🚚 Samarqand · Toshkent · Qarshi\n' + BOT_LINE + '\n' +
   'Toza suv — butun oila salomatligi 💙\nQuyidan tanlang 👇';
@@ -37,9 +38,9 @@ const PAGES = [
   '😋 Natija: ichimlikdan shirin, mazali suv.\n👶 Bolalar uchun xavfsiz.',
   '🇩🇪 <b>Texnologiya</b>  <code>3/4</code>\n' + BOT_LINE + '\n' +
   'Original Germaniya texnologiyasi.\n\n' +
-  '🔧 Original ehtiyot qismlar\n🛠 Xizmat ko\'rsatish\n🎬 Demo: apparat ishlashini o\'zingiz ko\'rasiz',
+  '🔧 Original ehtiyot qismlar\n🛠 Servis xizmati — <b>bepul</b>\n🎬 Demo: apparat ishlashini o\'zingiz ko\'rasiz',
   '💳 <b>Shartlar</b>  <code>4/4</code>\n' + BOT_LINE + '\n' +
-  '💰 <b>0%</b> — foizsiz muddatli to\'lov\n🚚 Yetkazib berish: Samarqand, Toshkent, Qarshi\n\n' +
+  '💰 <b>0%</b> — foizsiz muddatli to\'lov\n🎁 <b>Bepul:</b> yetkazib berish, o\'rnatish, servis\n📍 Samarqand, Toshkent, Qarshi\n\n' +
   `Aniq narx va shartlar uchun: <b>${PHONE}</b>`,
 ];
 const pageKb = (i) => ({ inline_keyboard: [
@@ -50,7 +51,8 @@ const pageKb = (i) => ({ inline_keyboard: [
 const PAY =
   '💳 <b>FOIZSIZ MUDDATLI TO\'LOV</b>\n' + BOT_LINE + '\n' +
   '💰 Ustama foiz: <b>0%</b>\n' +
-  '🚚 Yetkazib berish: Samarqand · Toshkent · Qarshi\n' +
+  '🎁 Yetkazish, o\'rnatish, servis: <b>BEPUL</b>\n' +
+  '📍 Samarqand · Toshkent · Qarshi\n' +
   '🎬 Avval demo — keyin qaror\n\n' +
   `Aniq shartlar va narxni operator aytadi:\n📞 <b>${PHONE}</b>`;
 
@@ -61,9 +63,9 @@ const CONTACT =
 
 const FAQ = [
   ['💳 To\'lov qanday?', 'Foizsiz muddatli to\'lov mavjud. Aniq shartlarni operator tushuntiradi.'],
-  ['🚚 Qayerga yetkazasiz?', 'Samarqand, Toshkent va Qarshi bo\'ylab.'],
+  ['🚚 Qayerga yetkazasiz?', 'Samarqand, Toshkent va Qarshi bo\'ylab. Mahsulotni olgandan keyin yetkazib berish bepul.'],
   ['🎬 Sinab ko\'rsa bo\'ladimi?', 'Ha, demo xizmatimiz bor — apparat ishlashini o\'zingiz ko\'rasiz.'],
-  ['⚙️ O\'rnatish qiyinmi?', 'Aura Cebilon oson o\'rnatiladi va foydalanish qulay.'],
+  ['⚙️ O\'rnatish va servis pullikmi?', 'Yo\'q, mahsulotni olgandan keyin yetkazib berish, o\'rnatish va servis xizmati bepul.'],
   ['💰 Narxi qancha?', `Aniq narx uchun ${PHONE} raqamiga qo'ng'iroq qiling yoki zayavka qoldiring.`],
 ];
 const faqKb = { inline_keyboard: [...FAQ.map(([q], i) => [{ text: q, callback_data: `faq:${i}` }]), [{ text: '🏠 Menyu', callback_data: 'menu' }]] };

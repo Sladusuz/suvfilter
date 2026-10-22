@@ -123,9 +123,10 @@ form.addEventListener('submit', async (e) => {
   const TEL = '<a href="tel:+998933303575">+998 93 330 35 75</a>';
   const A = {
     tolov: 'Foizsiz muddatli to\'lov mavjud 💳. Aniq shartlarni operator tushuntiradi: ' + TEL,
-    yetkazish: 'Samarqand, Toshkent va Qarshi bo\'ylab yetkazib beramiz 🚚',
+    yetkazish: 'Samarqand, Toshkent va Qarshi bo\'ylab yetkazib beramiz 🚚 Mahsulotni olgandan keyin yetkazib berish BEPUL!',
     demo: 'Demo xizmatimiz bor 🎬 — apparat ishlashini o\'zingiz ko\'rishingiz mumkin. Zayavka qoldiring, kelishamiz.',
-    ornatish: 'Aura Cebilon oson o\'rnatiladi ⚙️ va foydalanish qulay. Batafsil: ' + TEL,
+    ornatish: 'O\'rnatish va servis xizmati BEPUL 🔧 Mahsulotni olgandan keyin mutaxassislarimiz o\'rnatib berishadi. Batafsil: ' + TEL,
+    servis: 'Servis xizmati ham bepul 🛠 Mahsulotni olganingizdan keyin yetkazib berish, o\'rnatish va servis uchun alohida to\'lov yo\'q.',
     narx: 'Aniq narx va to\'lov jadvali uchun qo\'ng\'iroq qiling: ' + TEL + ' yoki <a href="#apply">zayavka qoldiring</a>.',
     mahsulot: 'Aura Cebilon Pro — ko\'p bosqichli tozalash, hid/tuz/zang aralashmalaridan tozalaydi, mazali va bolalar uchun xavfsiz suv beradi. Dizayni ixcham 🏠',
     aloqa: 'Telefon: ' + TEL + '<br>Telegram bot: <a href="https://t.me/suvfiltersamarqand_bot">@suvfiltersamarqand_bot</a><br>Instagram: <a href="https://instagram.com/suv_filtir_samarqand">suv_filtir_samarqand</a>',
@@ -135,6 +136,7 @@ form.addEventListener('submit', async (e) => {
     [/(to'?lov|tulov|muddat|foiz|bo'?lib|rassrochka|kredit)/i, 'tolov'],
     [/(yetkaz|dostavka|shahar|toshkent|qarshi|samarqand|viloyat)/i, 'yetkazish'],
     [/(demo|ko'?rsat|sina|tekshir)/i, 'demo'],
+    [/(servis|xizmat|ta'?mir|bepul|tekin|qo'?shimcha)/i, 'servis'],
     [/(o'?rnat|montaj|qur)/i, 'ornatish'],
     [/(narx|qancha|pul|so'?m|necha|summa)/i, 'narx'],
     [/(filtr|apparat|cebilon|aura|mahsulot|xususiyat|nima)/i, 'mahsulot'],
@@ -145,7 +147,7 @@ form.addEventListener('submit', async (e) => {
   const esc = (s) => s.replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
   const reply = (key) => { const t = document.createElement('div'); t.className = 'm bot'; t.textContent = '...'; msgs.append(t); msgs.scrollTop = msgs.scrollHeight;
     setTimeout(() => { t.innerHTML = A[key] || 'Bu savol bo\'yicha operator aniq javob beradi: ' + TEL + ' yoki <a href="#apply">zayavka qoldiring</a>.'; msgs.scrollTop = msgs.scrollHeight; }, 450); };
-  const chips = [['To\'lov', 'tolov'], ['Narx', 'narx'], ['Yetkazish', 'yetkazish'], ['Demo', 'demo'], ['Aloqa', 'aloqa']];
+  const chips = [['To\'lov', 'tolov'], ['Bepul xizmatlar', 'servis'], ['Narx', 'narx'], ['Yetkazish', 'yetkazish'], ['Demo', 'demo'], ['Aloqa', 'aloqa']];
   chips.forEach(([l, k]) => { const b = document.createElement('button'); b.textContent = l; b.onclick = () => { add(l, 'me'); reply(k); }; quick.append(b); });
   const open = (o) => { box.hidden = !o; if (o && !msgs.children.length) add('Salom! 👋 Men Suv Filter yordamchisiman. Savolingizni yozing yoki pastdagi tugmalardan tanlang.', 'bot'); if (o) input.focus(); };
   $('#chatOpen').onclick = () => open(box.hidden);
