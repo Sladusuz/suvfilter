@@ -19,19 +19,28 @@ export async function tg(method, body) {
   if (!j.ok) throw new Error(j.description);
   return j.result;
 }
+export const MODELS = { eco: 'Aura Cebilon Eco', nature: 'Aura Cebilon Nature', black: 'Aura Cebilon Black', pro: 'Aura Cebilon Pro', cebilup: 'Aura Cebilup' };
 export const esc = (s) => String(s).replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
 
-export async function notify(r) {
+export async function notify(r, origin = process.env.URL || '') {
   const text =
     `🆕 <b>Yangi zayavka #${r.id}</b>\n\n` +
+    (r.model ? `📦 <b>Model:</b> ${esc(MODELS[r.model] || r.model)}\n` : '') +
     `👤 <b>Ism:</b> ${esc(r.name)}\n` +
     `📞 <b>Telefon:</b> ${esc(r.phone)}\n` +
     (r.tgUser ? `✈️ <b>Telegram:</b> ${esc(r.tgUser)}\n` : '') +
     `📍 <b>Manba:</b> ${r.source === 'bot' ? 'Telegram bot' : 'Sayt'}\n` +
     (r.message ? `💬 <b>Xabar:</b> ${esc(r.message)}\n` : '') +
     `\n🕒 ${new Date(r.createdAt).toLocaleString('uz-UZ', { timeZone: 'Asia/Samarkand' })}`;
+  const photo = r.model && MODELS[r.model] && origin ? `${origin}/models/${r.model}.jpg` : null;
   const chats = await getChats();
-  const res = await Promise.allSettled(chats.map((chat_id) => tg('sendMessage', { chat_id, text, parse_mode: 'HTML' })));
+  const res = await Promise.allSettled(chats.map(async (chat_id) => {
+    if (photo) {
+      try { return await tg('sendPhoto', { chat_id, photo, caption: text, parse_mode: 'HTML' }); }
+      catch (e) { console.error('Photo:', e.message); } // fall back to plain text
+    }
+    return tg('sendMessage', { chat_id, text, parse_mode: 'HTML' });
+  }));
   res.filter((x) => x.status === 'rejected').forEach((x) => console.error('Telegram:', x.reason.message));
   return res.some((x) => x.status === 'fulfilled');
 }

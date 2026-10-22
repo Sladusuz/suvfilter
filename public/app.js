@@ -112,7 +112,7 @@ form.addEventListener('submit', async (e) => {
   try {
     const r = await fetch('/api/requests', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.fromEntries(new FormData(form))) });
     const j = await r.json(); if (!r.ok) throw new Error(j.error);
-    form.reset(); st.className = 'ok'; st.textContent = '✅ Rahmat! Zayavkangiz qabul qilindi, tez orada bog\'lanamiz.';
+    form.reset(); pickModel(''); st.className = 'ok'; st.textContent = '✅ Rahmat! Zayavkangiz qabul qilindi, tez orada bog\'lanamiz.';
   } catch (err) { st.className = 'err'; st.textContent = err.message || 'Xatolik. Qayta urinib ko\'ring.'; }
   btn.disabled = false;
 });
@@ -180,9 +180,16 @@ form.addEventListener('submit', async (e) => {
   t.src = 'product-pro.png';
 })();
 
-/* model cards: prefill the form with the chosen model */
+/* model cards: put the chosen model into the form (sent to Telegram with its photo) */
+const picked = $('#picked'), modelInput = $('#model');
+const pickModel = (key, name) => {
+  modelInput.value = key || '';
+  picked.hidden = !key;
+  if (key) { $('#pickedImg').src = 'models/' + key + '.jpg'; $('#pickedName').textContent = name; }
+};
+$('#pickedX').onclick = () => pickModel('');
 $$('.ask').forEach((b) => b.addEventListener('click', () => {
-  $('#msg').value = 'Model: ' + b.dataset.model + '. Narxini bilmoqchiman.';
+  pickModel(b.dataset.key, b.dataset.model);
   $('#apply').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
   setTimeout(() => $('#form [name=name]').focus({ preventScroll: true }), 600);
 }));

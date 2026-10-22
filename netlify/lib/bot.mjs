@@ -1,5 +1,5 @@
 import { store, nextId, reqKey, getChats } from './store.mjs';
-import { cfg, tg, esc, notify } from './core.mjs';
+import { cfg, tg, esc, notify, MODELS as MODEL_NAMES } from './core.mjs';
 
 let SITE = '';
 const PHONE = '+998 93 330 35 75';
@@ -114,15 +114,16 @@ async function sendWelcome(chat_id) {
   await send(chat_id, 'Pastdagi menyu har doim yoningizda 👇', { reply_markup: KB });
 }
 
+const modelLine = (s) => (s.model ? `📦 <b>${esc(MODEL_NAMES[s.model])}</b>\n` : '');
 const stepCard = (n, title, body) => `📝 <b>ZAYAVKA</b>  ${bar(n, 3)} <code>${n}/3</code>\n${BOT_LINE}\n<b>${title}</b>\n${body}\n\n<i>Bekor qilish: /cancel</i>`;
 
-async function startApply(chat_id, prefill = '') {
-  await setSess(chat_id, { step: 'name', message: prefill });
+async function startApply(chat_id, prefill = '', model = '') {
+  await setSess(chat_id, { step: 'name', message: prefill, model });
   await send(chat_id, stepCard(1, '👤 Ismingiz?', 'Ismingizni yozing.'), { reply_markup: { remove_keyboard: true } });
 }
 
 const summary = (s) =>
-  `🧾 <b>ZAYAVKANI TEKSHIRING</b>\n${BOT_LINE}\n👤 <b>${esc(s.name)}</b>\n📞 <b>${esc(s.phone)}</b>\n` +
+  `🧾 <b>ZAYAVKANI TEKSHIRING</b>\n${BOT_LINE}\n${modelLine(s)}👤 <b>${esc(s.name)}</b>\n📞 <b>${esc(s.phone)}</b>\n` +
   (s.message ? `💬 ${esc(s.message)}\n` : '') + `${BOT_LINE}\nHammasi to'g'rimi?`;
 const confirmKb = { inline_keyboard: [[{ text: '✅ Yuborish', callback_data: 'confirm' }, { text: '✏️ Qaytadan', callback_data: 'apply' }], [{ text: '✖️ Bekor qilish', callback_data: 'cancel' }]] };
 
@@ -131,10 +132,10 @@ async function finish(chat_id, from) {
   await delSess(chat_id);
   const wait = await send(chat_id, '⏳ Zayavka yuborilmoqda...\n▱▱▱▱▱');
   const id = await nextId();
-  const r = { id, name: s.name, phone: s.phone, message: s.message || '', status: 'new', createdAt: new Date().toISOString(), sent: false, source: 'bot', tgUser: from.username ? '@' + from.username : '' };
+  const r = { id, name: s.name, phone: s.phone, message: s.message || '', status: 'new', createdAt: new Date().toISOString(), sent: false, source: 'bot', model: s.model || '', tgUser: from.username ? '@' + from.username : '' };
   await store.set(reqKey(id), r);
   await tg('editMessageText', { chat_id, message_id: wait.message_id, text: `⏳ Zayavka yuborilmoqda...\n${bar(3, 5)}` }).catch(() => {});
-  r.sent = await notify(r).catch(() => false); await store.set(reqKey(id), r);
+  r.sent = await notify(r, SITE).catch(() => false); await store.set(reqKey(id), r);
   await tg('editMessageText', { chat_id, message_id: wait.message_id, parse_mode: 'HTML',
     text: `🎉 <b>Zayavka #${r.id} qabul qilindi!</b>\n▰▰▰▰▰\n\nRahmat, <b>${esc(s.name)}</b>! Tez orada <b>${esc(s.phone)}</b> raqamiga qo'ng'iroq qilamiz.\n\n🎁 Eslatma: yetkazib berish, o'rnatish va servis — bepul.\n💧 Toza suv — sog'lom oila!` }).catch(() => {});
   await send(chat_id, 'Yana nimadir kerakmi? 👇', { reply_markup: KB });
@@ -154,7 +155,10 @@ async function sendModels(chat_id) {
   try {
     await tg('sendMediaGroup', { chat_id, media: MODELS.map(([k, cap]) => ({ type: 'photo', media: `${SITE}/models/${k}.jpg`, caption: cap, parse_mode: 'HTML' })) });
   } catch (e) { console.error('Media group:', e.message); }
-  await send(chat_id, MODELS_TEXT, { reply_markup: { inline_keyboard: [APPLY_BTN, [{ text: '🏠 Menyu', callback_data: 'menu' }]] } });
+  await send(chat_id, MODELS_TEXT, { reply_markup: { inline_keyboard: [
+    ...MODELS.map(([k]) => [{ text: `📝 ${MODEL_NAMES[k]} — narxini bilish`, callback_data: `mdl:${k}` }]),
+    [{ text: '🏠 Menyu', callback_data: 'menu' }],
+  ] } });
 }
 
 const MENU_TEXT = { '📝 Zayavka': 'apply', '📦 Modellar': 'models', '🎁 Bepul xizmatlar': 'free', '🚰 Mahsulot': 'info', '💧 Suv testi': 'quiz', '💳 To\'lov': 'pay', '📞 Aloqa': 'contact', '❓ Savollar': 'faq' };
@@ -223,6 +227,7 @@ async function onCallback(q) {
   const chat_id = q.message.chat.id, d = q.data;
   await tg('answerCallbackQuery', { callback_query_id: q.id }).catch(() => {});
   if (d === 'noop') return;
+  if (d.startsWith('mdl:')) { const k = d.split(':')[1]; return MODEL_NAMES[k] ? startApply(chat_id, '', k) : undefined; }
   if (d.startsWith('info:')) { const i = +d.split(':')[1]; return show(q, PAGES[i], pageKb(i)); }
   if (d.startsWith('faq:')) {
     const [qq, aa] = FAQ[+d.split(':')[1]];

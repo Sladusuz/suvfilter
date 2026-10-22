@@ -107,11 +107,11 @@
     <span>Aniq narx modelga qarab belgilanadi. Foizsiz muddatli to'lov mavjud.</span>
   </div>
   <div class="models">
-    <article class="model reveal"><div class="m-img"><img src="models/eco.jpg" alt="Aura Cebilon Eco" width="252" height="336" loading="lazy"></div><h3>Cebilon <em>Eco</em></h3><p>Ixcham oq korpus, yengil va zamonaviy ko'rinish.</p><button class="btn sm ask" data-model="Aura Cebilon Eco">Narxini bilish</button></article>
-    <article class="model reveal"><div class="m-img"><img src="models/nature.jpg" alt="Aura Cebilon Nature" width="252" height="336" loading="lazy"></div><h3>Cebilon <em>Nature</em></h3><p>Qora-oq zamonaviy dizayn, oshxonaga bezak.</p><button class="btn sm ask" data-model="Aura Cebilon Nature">Narxini bilish</button></article>
-    <article class="model reveal"><div class="m-img"><img src="models/black.jpg" alt="Aura Cebilon Black" width="252" height="336" loading="lazy"></div><h3>Cebilon <em>Black</em></h3><p>Qora-oq dizayn, boshqaruv paneli bilan.</p><button class="btn sm ask" data-model="Aura Cebilon Black">Narxini bilish</button></article>
-    <article class="model reveal"><div class="m-img"><img src="models/pro.jpg" alt="Aura Cebilon Pro" width="252" height="336" loading="lazy"></div><h3>Cebilon <em>Pro</em></h3><p>Oq klassik korpus, tepasida displey.</p><button class="btn sm ask" data-model="Aura Cebilon Pro">Narxini bilish</button></article>
-    <article class="model reveal"><div class="m-img"><img src="models/cebilup.jpg" alt="Aura Cebilup" width="252" height="336" loading="lazy"></div><h3>Cebilup</h3><p>Polda turadigan model, uchta jo'mrakli.</p><button class="btn sm ask" data-model="Aura Cebilup">Narxini bilish</button></article>
+    <article class="model reveal"><div class="m-img"><img src="models/eco.jpg" alt="Aura Cebilon Eco" width="252" height="336" loading="lazy"></div><h3>Cebilon <em>Eco</em></h3><p>Ixcham oq korpus, yengil va zamonaviy ko'rinish.</p><button class="btn sm ask" data-model="Aura Cebilon Eco" data-key="eco">Narxini bilish</button></article>
+    <article class="model reveal"><div class="m-img"><img src="models/nature.jpg" alt="Aura Cebilon Nature" width="252" height="336" loading="lazy"></div><h3>Cebilon <em>Nature</em></h3><p>Qora-oq zamonaviy dizayn, oshxonaga bezak.</p><button class="btn sm ask" data-model="Aura Cebilon Nature" data-key="nature">Narxini bilish</button></article>
+    <article class="model reveal"><div class="m-img"><img src="models/black.jpg" alt="Aura Cebilon Black" width="252" height="336" loading="lazy"></div><h3>Cebilon <em>Black</em></h3><p>Qora-oq dizayn, boshqaruv paneli bilan.</p><button class="btn sm ask" data-model="Aura Cebilon Black" data-key="black">Narxini bilish</button></article>
+    <article class="model reveal"><div class="m-img"><img src="models/pro.jpg" alt="Aura Cebilon Pro" width="252" height="336" loading="lazy"></div><h3>Cebilon <em>Pro</em></h3><p>Oq klassik korpus, tepasida displey.</p><button class="btn sm ask" data-model="Aura Cebilon Pro" data-key="pro">Narxini bilish</button></article>
+    <article class="model reveal"><div class="m-img"><img src="models/cebilup.jpg" alt="Aura Cebilup" width="252" height="336" loading="lazy"></div><h3>Cebilup</h3><p>Polda turadigan model, uchta jo'mrakli.</p><button class="btn sm ask" data-model="Aura Cebilup" data-key="cebilup">Narxini bilish</button></article>
   </div>
 </section>
 
@@ -233,6 +233,8 @@
     </div>
     <form id="form" class="form reveal">
       <h3>Buyurtma / zayavka</h3>
+      <div class="picked" id="picked" hidden><img id="pickedImg" src="models/pro.jpg" alt="" width="54" height="72"><div><small>Tanlangan model</small><b id="pickedName"></b></div><button type="button" id="pickedX" aria-label="Modelni olib tashlash">✕</button></div>
+      <input type="hidden" name="model" id="model" value="">
       <label>Ismingiz<input name="name" placeholder="Ism" required maxlength="100" autocomplete="name"></label>
       <label>Telefon<input name="phone" id="phone" type="tel" inputmode="tel" placeholder="+998 __ ___ __ __" required maxlength="30" autocomplete="tel"></label>
       <label>Xabar (ixtiyoriy)<textarea name="message" id="msg" placeholder="Savolingiz yoki suv muammosi" rows="3" maxlength="1000"></textarea></label>
