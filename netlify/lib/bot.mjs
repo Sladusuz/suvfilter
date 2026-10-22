@@ -1,5 +1,5 @@
 import { store, nextId, reqKey, getChats } from './store.mjs';
-import { cfg, tg, esc, notify, MODELS as MODEL_NAMES } from './core.mjs';
+import { cfg, tg, esc, notify, MODELS as MODEL_NAMES, REGIONS } from './core.mjs';
 
 let SITE = '';
 const PHONE = '+998 93 330 35 75';
@@ -115,7 +115,7 @@ async function sendWelcome(chat_id) {
 }
 
 const modelLine = (s) => (s.model ? `📦 <b>${esc(MODEL_NAMES[s.model])}</b>\n` : '');
-const stepCard = (n, title, body) => `📝 <b>ZAYAVKA</b>  ${bar(n, 3)} <code>${n}/3</code>\n${BOT_LINE}\n<b>${title}</b>\n${body}\n\n<i>Bekor qilish: /cancel</i>`;
+const stepCard = (n, title, body) => `📝 <b>ZAYAVKA</b>  ${bar(n, 5)} <code>${n}/5</code>\n${BOT_LINE}\n<b>${title}</b>\n${body}\n\n<i>Bekor qilish: /cancel</i>`;
 
 async function startApply(chat_id, prefill = '', model = '') {
   await setSess(chat_id, { step: 'name', message: prefill, model });
@@ -124,7 +124,13 @@ async function startApply(chat_id, prefill = '', model = '') {
 
 const summary = (s) =>
   `🧾 <b>ZAYAVKANI TEKSHIRING</b>\n${BOT_LINE}\n${modelLine(s)}👤 <b>${esc(s.name)}</b>\n📞 <b>${esc(s.phone)}</b>\n` +
+  (s.region ? `🗺 ${esc(s.region)}\n` : '') + (s.address ? `🏠 ${esc(s.address)}\n` : '') +
   (s.message ? `💬 ${esc(s.message)}\n` : '') + `${BOT_LINE}\nHammasi to'g'rimi?`;
+const regionKb = { inline_keyboard: [
+  ...Array.from({ length: Math.ceil(REGIONS.length / 2) }, (_, i) => REGIONS.slice(i * 2, i * 2 + 2).map((r, j) => ({ text: r.s, callback_data: `rg:${i * 2 + j}` }))),
+] };
+const messageStep = (s) => stepCard(5, '💬 Qo\'shimcha xabar', 'Masalan: qulay vaqt yoki savolingiz. Yozing yoki o\'tkazib yuboring.');
+const skipKb = (data) => ({ inline_keyboard: [[{ text: '⏭ O\'tkazib yuborish', callback_data: data }]] });
 const confirmKb = { inline_keyboard: [[{ text: '✅ Yuborish', callback_data: 'confirm' }, { text: '✏️ Qaytadan', callback_data: 'apply' }], [{ text: '✖️ Bekor qilish', callback_data: 'cancel' }]] };
 
 async function finish(chat_id, from) {
@@ -132,7 +138,7 @@ async function finish(chat_id, from) {
   await delSess(chat_id);
   const wait = await send(chat_id, '⏳ Zayavka yuborilmoqda...\n▱▱▱▱▱');
   const id = await nextId();
-  const r = { id, name: s.name, phone: s.phone, message: s.message || '', status: 'new', createdAt: new Date().toISOString(), sent: false, source: 'bot', model: s.model || '', tgUser: from.username ? '@' + from.username : '' };
+  const r = { id, name: s.name, phone: s.phone, message: s.message || '', status: 'new', createdAt: new Date().toISOString(), sent: false, source: 'bot', model: s.model || '', region: s.region || '', address: s.address || '', tgUser: from.username ? '@' + from.username : '' };
   await store.set(reqKey(id), r);
   await tg('editMessageText', { chat_id, message_id: wait.message_id, text: `⏳ Zayavka yuborilmoqda...\n${bar(3, 5)}` }).catch(() => {});
   r.sent = await notify(r, SITE).catch(() => false); await store.set(reqKey(id), r);
@@ -211,10 +217,14 @@ async function onMessage(m) {
     const phone = (m.contact?.phone_number || text).trim();
     if (phone.replace(/\D/g, '').length < 9) return send(chat_id, '🤔 Raqam to\'g\'ri emas. Qaytadan yozing: <code>+998 90 123 45 67</code>');
     s.phone = (phone.startsWith('+') || !/^998/.test(phone) ? phone : '+' + phone).slice(0, 30);
-    s.step = 'message'; await setSess(chat_id, s);
-    return send(chat_id, stepCard(3, '💬 Qo\'shimcha xabar', 'Masalan: qaysi shahar, qulay vaqt. Yozing yoki o\'tkazib yuboring.'), {
-      reply_markup: { inline_keyboard: [[{ text: '⏭ O\'tkazib yuborish', callback_data: 'skip' }]] },
-    });
+    s.step = 'region'; await setSess(chat_id, s);
+    return send(chat_id, stepCard(3, '🗺 Qaysi hududdansiz?', 'Viloyatni tanlang 👇'), { reply_markup: regionKb });
+  }
+  if (s.step === 'region') return send(chat_id, 'Iltimos, viloyatni tugmalardan tanlang 👇', { reply_markup: regionKb });
+  if (s.step === 'address') {
+    if (text.length < 4) return send(chat_id, 'Manzilni to\'liqroq yozing: tuman, ko\'cha, uy raqami.');
+    s.address = text.slice(0, 300); s.step = 'message'; await setSess(chat_id, s);
+    return send(chat_id, messageStep(s), { reply_markup: skipKb('skip') });
   }
   if (s.step === 'message') {
     s.message = [s.message, text].filter(Boolean).join(' | ').slice(0, 1000); s.step = 'confirm'; await setSess(chat_id, s);
@@ -250,6 +260,17 @@ async function onCallback(q) {
   if (d === 'qzapply') {
     const set = await getQuiz(chat_id);
     return startApply(chat_id, set.size ? 'Suv muammolari: ' + [...set].map((i) => PROBLEMS[i].replace(/^\S+\s/, '')).join(', ') : '');
+  }
+  if (d.startsWith('rg:')) {
+    const s = await getSess(chat_id), reg = REGIONS[+d.split(':')[1]];
+    if (!s || s.step !== 'region' || !reg) return;
+    s.region = reg.f; s.step = 'address'; await setSess(chat_id, s);
+    return show(q, stepCard(4, `🏠 Manzilingiz (${esc(reg.f)})`, 'Tuman, ko\'cha va uy raqamini yozing.'), skipKb('skipaddr'));
+  }
+  if (d === 'skipaddr') {
+    const s = await getSess(chat_id);
+    if (s && s.step === 'address') { s.step = 'message'; await setSess(chat_id, s); return show(q, messageStep(s), skipKb('skip')); }
+    return;
   }
   if (d === 'skip') {
     const s = await getSess(chat_id);

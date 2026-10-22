@@ -20,6 +20,16 @@ export async function tg(method, body) {
   return j.result;
 }
 export const MODELS = { eco: 'Aura Cebilon Eco', nature: 'Aura Cebilon Nature', black: 'Aura Cebilon Black', pro: 'Aura Cebilon Pro', cebilup: 'Aura Cebilup' };
+export const REGIONS = [
+  { s: 'Samarqand', f: 'Samarqand viloyati' }, { s: 'Toshkent sh.', f: 'Toshkent shahri' },
+  { s: 'Toshkent v.', f: 'Toshkent viloyati' }, { s: 'Andijon', f: 'Andijon viloyati' },
+  { s: 'Buxoro', f: 'Buxoro viloyati' }, { s: 'Farg\'ona', f: 'Farg\'ona viloyati' },
+  { s: 'Jizzax', f: 'Jizzax viloyati' }, { s: 'Xorazm', f: 'Xorazm viloyati' },
+  { s: 'Namangan', f: 'Namangan viloyati' }, { s: 'Navoiy', f: 'Navoiy viloyati' },
+  { s: 'Qashqadaryo', f: 'Qashqadaryo viloyati' }, { s: 'Sirdaryo', f: 'Sirdaryo viloyati' },
+  { s: 'Surxondaryo', f: 'Surxondaryo viloyati' }, { s: 'Qoraqalpog\'iston', f: 'Qoraqalpog\'iston Respublikasi' },
+];
+export const regionName = (v) => REGIONS.find((r) => r.f === v)?.f || '';
 export const esc = (s) => String(s).replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
 
 export async function notify(r, origin = process.env.URL || '') {
@@ -28,6 +38,8 @@ export async function notify(r, origin = process.env.URL || '') {
     (r.model ? `📦 <b>Model:</b> ${esc(MODELS[r.model] || r.model)}\n` : '') +
     `👤 <b>Ism:</b> ${esc(r.name)}\n` +
     `📞 <b>Telefon:</b> ${esc(r.phone)}\n` +
+    (r.region ? `🗺 <b>Hudud:</b> ${esc(r.region)}\n` : '') +
+    (r.address ? `🏠 <b>Manzil:</b> ${esc(r.address)}\n` : '') +
     (r.tgUser ? `✈️ <b>Telegram:</b> ${esc(r.tgUser)}\n` : '') +
     `📍 <b>Manba:</b> ${r.source === 'bot' ? 'Telegram bot' : 'Sayt'}\n` +
     (r.message ? `💬 <b>Xabar:</b> ${esc(r.message)}\n` : '') +

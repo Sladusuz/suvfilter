@@ -237,6 +237,13 @@
       <input type="hidden" name="model" id="model" value="">
       <label>Ismingiz<input name="name" placeholder="Ism" required maxlength="100" autocomplete="name"></label>
       <label>Telefon<input name="phone" id="phone" type="tel" inputmode="tel" placeholder="+998 __ ___ __ __" required maxlength="30" autocomplete="tel"></label>
+      <fieldset class="region">
+        <legend>Hududingiz <small>(yetkazib berish uchun)</small></legend>
+        <div class="chips" id="chips"><label class="chip"><input type="radio" name="region" value="Samarqand viloyati" required><span>Samarqand</span></label><label class="chip"><input type="radio" name="region" value="Toshkent shahri"><span>Toshkent sh.</span></label><label class="chip"><input type="radio" name="region" value="Toshkent viloyati"><span>Toshkent v.</span></label><label class="chip"><input type="radio" name="region" value="Andijon viloyati"><span>Andijon</span></label><label class="chip"><input type="radio" name="region" value="Buxoro viloyati"><span>Buxoro</span></label><label class="chip"><input type="radio" name="region" value="Farg'ona viloyati"><span>Farg'ona</span></label><label class="chip"><input type="radio" name="region" value="Jizzax viloyati"><span>Jizzax</span></label><label class="chip"><input type="radio" name="region" value="Xorazm viloyati"><span>Xorazm</span></label><label class="chip"><input type="radio" name="region" value="Namangan viloyati"><span>Namangan</span></label><label class="chip"><input type="radio" name="region" value="Navoiy viloyati"><span>Navoiy</span></label><label class="chip"><input type="radio" name="region" value="Qashqadaryo viloyati"><span>Qashqadaryo</span></label><label class="chip"><input type="radio" name="region" value="Sirdaryo viloyati"><span>Sirdaryo</span></label><label class="chip"><input type="radio" name="region" value="Surxondaryo viloyati"><span>Surxondaryo</span></label><label class="chip"><input type="radio" name="region" value="Qoraqalpog'iston Respublikasi"><span>Qoraqalpog'iston</span></label></div>
+      </fieldset>
+      <div class="addr" id="addr" hidden>
+        <label>Manzil <em id="addrRegion"></em><input name="address" id="address" placeholder="Tuman, ko'cha, uy raqami" maxlength="300" autocomplete="street-address"></label>
+      </div>
       <label>Xabar (ixtiyoriy)<textarea name="message" id="msg" placeholder="Savolingiz yoki suv muammosi" rows="3" maxlength="1000"></textarea></label>
       <input name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
       <button class="btn lg" type="submit">Yuborish <span>→</span></button>
