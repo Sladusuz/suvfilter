@@ -25,7 +25,7 @@ const WELCOME =
   '💧 <b>SUV FILTER SAMARQAND</b>\n' + BOT_LINE + '\n' +
   '✨ <b>Aura Cebilon Pro</b>\n<i>Suvni tozalashning yangi standarti</i>\n\n' +
   '🇩🇪 Original Germaniya texnologiyasi\n' +
-  '💰 Narxlar: <b>4 990 000 — 14 990 000</b> so\'m\n' +
+  '💰 Narxlar: <b>4 990 000 — 15 990 000</b> so\'m\n' +
   '💳 <b>0% — foizsiz muddatli to\'lov</b>\n' +
   '🎁 <b>Yetkazish, o\'rnatish, servis — BEPUL</b>\n' +
   '🎬 Demo xizmati\n' +
@@ -34,7 +34,7 @@ const WELCOME =
 
 const PAGES = [
   '🚰 <b>Aura Cebilon Pro</b>  <code>1/4</code>\n' + BOT_LINE + '\n' +
-  'Zamonaviy suv tozalash apparati.\n💰 Narxlar: <b>4 990 000 — 14 990 000</b> so\'m (modelga qarab)\n\n' +
+  'Zamonaviy suv tozalash apparati.\n💰 Narxlar: <b>4 990 000 — 15 990 000</b> so\'m (modelga qarab)\n\n' +
   '🌀 Ko\'p bosqichli tozalash tizimi\n🏠 Ixcham dizayn — oshxonaga mos\n⚙️ Oson o\'rnatish va qulay foydalanish\n🎁 Yetkazish, o\'rnatish, servis — <b>bepul</b>',
   '🧪 <b>Tozalash sifati</b>  <code>2/4</code>\n' + BOT_LINE + '\n' +
   '✅ Begona hid\n✅ Tuz aralashmalari\n✅ Zang va sariq tus\n\n' +
@@ -43,7 +43,7 @@ const PAGES = [
   'Original Germaniya texnologiyasi.\n\n' +
   '🔧 Original ehtiyot qismlar\n🛠 Servis xizmati — <b>bepul</b>\n🎬 Demo: apparat ishlashini o\'zingiz ko\'rasiz',
   '💳 <b>Shartlar</b>  <code>4/4</code>\n' + BOT_LINE + '\n' +
-  '💰 Narxlar: <b>4 990 000 — 14 990 000</b> so\'m\n💳 <b>0%</b> — foizsiz muddatli to\'lov\n🎁 <b>Bepul:</b> yetkazib berish, o\'rnatish, servis\n📍 Samarqand, Toshkent, Qarshi\n\n' +
+  '💰 Narxlar: <b>4 990 000 — 15 990 000</b> so\'m\n💳 <b>0%</b> — foizsiz muddatli to\'lov\n🎁 <b>Bepul:</b> yetkazib berish, o\'rnatish, servis\n📍 Samarqand, Toshkent, Qarshi\n\n' +
   `Aniq narx va shartlar uchun: <b>${PHONE}</b>`,
 ];
 const pageKb = (i) => ({ inline_keyboard: [
@@ -79,7 +79,7 @@ const FAQ = [
   ['🚚 Qayerga yetkazasiz?', 'Samarqand, Toshkent va Qarshi bo\'ylab. Mahsulotni olgandan keyin yetkazib berish bepul.'],
   ['🎬 Sinab ko\'rsa bo\'ladimi?', 'Ha, demo xizmatimiz bor — apparat ishlashini o\'zingiz ko\'rasiz.'],
   ['⚙️ O\'rnatish va servis pullikmi?', 'Yo\'q, mahsulotni olgandan keyin yetkazib berish, o\'rnatish va servis xizmati bepul.'],
-  ['💰 Narxi qancha?', `Narxlar modelga qarab 4 990 000 so'mdan 14 990 000 so'mgacha. Aniq narx uchun ${PHONE} raqamiga qo'ng'iroq qiling yoki zayavka qoldiring.`],
+  ['💰 Narxi qancha?', `Narxlar modelga qarab 4 990 000 so'mdan 15 990 000 so'mgacha. Aniq narx uchun ${PHONE} raqamiga qo'ng'iroq qiling yoki zayavka qoldiring.`],
 ];
 const faqKb = { inline_keyboard: [...FAQ.map(([q], i) => [{ text: q, callback_data: `faq:${i}` }]), [{ text: '🏠 Menyu', callback_data: 'menu' }]] };
 
@@ -147,7 +147,7 @@ const MODELS = [
   ['pro', '<b>Cebilon Pro</b> — oq klassik korpus, tepasida displey'],
   ['cebilup', '<b>Cebilup</b> — polda turadigan model'],
 ];
-const MODELS_TEXT = '📦 <b>MODELLAR VA NARXLAR</b>\n' + BOT_LINE + '\n💰 <b>4 990 000 — 14 990 000</b> so\'m\n<i>Aniq narx modelga qarab belgilanadi.</i>\n\n💳 0% foizsiz muddatli to\'lov\n🎁 Yetkazish, o\'rnatish, servis — BEPUL\n\nModel tanlab, zayavka qoldiring 👇';
+const MODELS_TEXT = '📦 <b>MODELLAR VA NARXLAR</b>\n' + BOT_LINE + '\n💰 <b>4 990 000 — 15 990 000</b> so\'m\n<i>Aniq narx modelga qarab belgilanadi.</i>\n\n💳 0% foizsiz muddatli to\'lov\n🎁 Yetkazish, o\'rnatish, servis — BEPUL\n\nModel tanlab, zayavka qoldiring 👇';
 
 async function sendModels(chat_id) {
   await tg('sendChatAction', { chat_id, action: 'upload_photo' }).catch(() => {});

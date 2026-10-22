@@ -127,7 +127,7 @@ form.addEventListener('submit', async (e) => {
     demo: 'Demo xizmatimiz bor 🎬 — apparat ishlashini o\'zingiz ko\'rishingiz mumkin. Zayavka qoldiring, kelishamiz.',
     ornatish: 'O\'rnatish va servis xizmati BEPUL 🔧 Mahsulotni olgandan keyin mutaxassislarimiz o\'rnatib berishadi. Batafsil: ' + TEL,
     servis: 'Servis xizmati ham bepul 🛠 Mahsulotni olganingizdan keyin yetkazib berish, o\'rnatish va servis uchun alohida to\'lov yo\'q.',
-    narx: 'Narxlar modelga qarab <b>4 990 000</b> so\'mdan <b>14 990 000</b> so\'mgacha 💰 Foizsiz muddatli to\'lov bor. Aniq narx uchun: ' + TEL + ' yoki <a href="#apply">zayavka qoldiring</a>.',
+    narx: 'Narxlar modelga qarab <b>4 990 000</b> so\'mdan <b>15 990 000</b> so\'mgacha 💰 Foizsiz muddatli to\'lov bor. Aniq narx uchun: ' + TEL + ' yoki <a href="#apply">zayavka qoldiring</a>.',
     model: 'Modellar: Cebilon Eco, Nature, Black, Pro va Cebilup 📦 <a href="#models">Modellarni ko\'rish</a>',
     mahsulot: 'Aura Cebilon Pro — ko\'p bosqichli tozalash, hid/tuz/zang aralashmalaridan tozalaydi, mazali va bolalar uchun xavfsiz suv beradi. Dizayni ixcham 🏠',
     aloqa: 'Telefon: ' + TEL + '<br>Telegram bot: <a href="https://t.me/suvfiltersamarqand_bot">@suvfiltersamarqand_bot</a><br>Instagram: <a href="https://instagram.com/suv_filtir_samarqand">suv_filtir_samarqand</a>',

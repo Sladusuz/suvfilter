@@ -53,7 +53,7 @@ export const webhookSecret = () => crypto.createHash('sha256').update('wh:' + cf
 
 // ---------- webhook ----------
 export const BOT_SHORT = '💧 Aura Cebilon: 4 990 000 so\'mdan. 0% to\'lov. Yetkazish, o\'rnatish, servis BEPUL!';
-export const BOT_ABOUT = 'Suv Filter Samarqand 💧\n\nAura Cebilon — suvni tozalashning yangi standarti. Original Germaniya texnologiyasi.\n\n💰 Narxlar: 4 990 000 — 14 990 000 so\'m\n💳 Foizsiz muddatli to\'lov\n🎁 Yetkazib berish, o\'rnatish va servis — BEPUL\n🎬 Demo xizmati\n\nBoshlash uchun START ni bosing 👇';
+export const BOT_ABOUT = 'Suv Filter Samarqand 💧\n\nAura Cebilon — suvni tozalashning yangi standarti. Original Germaniya texnologiyasi.\n\n💰 Narxlar: 4 990 000 — 15 990 000 so\'m\n💳 Foizsiz muddatli to\'lov\n🎁 Yetkazib berish, o\'rnatish va servis — BEPUL\n🎬 Demo xizmati\n\nBoshlash uchun START ni bosing 👇';
 
 export async function ensureWebhook(origin) {
   const url = origin + '/api/telegram';
@@ -61,7 +61,8 @@ export async function ensureWebhook(origin) {
   if (info.url === url) {
     // keep the bot profile texts current without re-registering the webhook
     const s = await tg('getMyShortDescription', {}).catch(() => ({}));
-    if (s.short_description !== BOT_SHORT) {
+    const d = await tg('getMyDescription', {}).catch(() => ({}));
+    if (s.short_description !== BOT_SHORT || d.description !== BOT_ABOUT) {
       await tg('setMyShortDescription', { short_description: BOT_SHORT }).catch(() => {});
       await tg('setMyDescription', { description: BOT_ABOUT }).catch(() => {});
     }
