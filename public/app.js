@@ -194,13 +194,12 @@ $$('.ask').forEach((b) => b.addEventListener('click', () => {
   setTimeout(() => $('#form [name=name]').focus({ preventScroll: true }), 600);
 }));
 
-/* region picker: choosing a region reveals the address field */
+/* region select: choosing a region reveals the address field */
 (() => {
-  const addr = $('#addr'), input = $('#address');
-  $$('input[name=region]').forEach((r) => r.addEventListener('change', () => {
-    $('#addrRegion').textContent = '· ' + r.value;
+  const addr = $('#addr'), input = $('#address'), sel = $('#region');
+  sel.addEventListener('change', () => {
     addr.hidden = false; input.required = true;
     if (!input.value) input.focus({ preventScroll: true });
-  }));
+  });
   $('#form').addEventListener('reset', () => { addr.hidden = true; input.required = false; });
 })();
