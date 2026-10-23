@@ -1,3 +1,3 @@
 import { adapt } from '../../lib/adapt.mjs';
-import handler from '../../netlify/functions/admin.mjs';
+import handler from '../../lib/handlers/admin.mjs';
 export default adapt(handler);
