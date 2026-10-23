@@ -2,6 +2,5 @@
   "name": "suvfilter",
   "version": "2.0.0",
   "private": true,
-  "type": "module",
-  "dependencies": { "@netlify/blobs": "^8.1.0" }
+  "type": "module"
 }

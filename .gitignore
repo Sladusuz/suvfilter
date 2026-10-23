@@ -1,7 +1,6 @@
 .env
 data/
 node_modules/
-.netlify/
 .vercel/
 .wrangler/
 .dev.vars
