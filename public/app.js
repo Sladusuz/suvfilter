@@ -130,7 +130,7 @@ form.addEventListener('submit', async (e) => {
     narx: 'Narxlar modelga qarab <b>4 990 000</b> so\'mdan <b>15 990 000</b> so\'mgacha 💰 Foizsiz muddatli to\'lov bor. Aniq narx uchun: ' + TEL + ' yoki <a href="#apply">zayavka qoldiring</a>.',
     model: 'Modellar: Cebilon Eco, Nature, Black, Pro va Cebilup 📦 <a href="#models">Modellarni ko\'rish</a>',
     mahsulot: 'Aura Cebilon Pro — ko\'p bosqichli tozalash, hid/tuz/zang aralashmalaridan tozalaydi, mazali va bolalar uchun xavfsiz suv beradi. Dizayni ixcham 🏠',
-    aloqa: 'Telefon: ' + TEL + '<br>Telegram bot: <a href="https://t.me/suvfiltersamarqand_bot">@suvfiltersamarqand_bot</a><br>Instagram: <a href="https://instagram.com/suv_filtir_samarqand">suv_filtir_samarqand</a>',
+    aloqa: 'Telefon: ' + TEL + '<br>Telegram kanal: <a href="https://t.me/auracebilonsamarqandpro">@auracebilonsamarqandpro</a><br>Telegram bot: <a href="https://t.me/suvfiltersamarqand_bot">@suvfiltersamarqand_bot</a><br>Instagram: <a href="https://instagram.com/suv_filtir_samarqand">suv_filtir_samarqand</a>',
     zayavka: 'Zayavka qoldirish uchun <a href="#apply">shu yerga bosing</a> yoki Telegram botdan foydalaning 📝',
   };
   const rules = [

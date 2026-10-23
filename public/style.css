@@ -359,3 +359,17 @@ nav a:hover{color:#fff}nav a:hover:after{width:100%}
 
 /* sections that wrap their content in .wrap already get the side gutter from it */
 .dark.block,.alt.block{padding-left:0;padding-right:0}
+
+/* telegram channel banner */
+.tgband{position:relative;display:flex;align-items:center;gap:24px;flex-wrap:wrap;text-decoration:none;color:#fff;background:linear-gradient(120deg,#229ed9,#1b7cf0 70%,#1759d6);border-radius:28px;padding:30px 36px;margin-bottom:96px;overflow:hidden;box-shadow:0 30px 60px -28px rgba(34,158,217,.7);transition:transform .25s,box-shadow .25s}
+.tgband:before{content:"";position:absolute;right:-90px;top:-90px;width:300px;height:300px;border-radius:50%;background:rgba(255,255,255,.12)}
+.tgband:hover{transform:translateY(-4px);box-shadow:0 38px 70px -26px rgba(34,158,217,.85)}
+.tg-ico{position:relative;flex:none;display:grid;place-items:center;width:72px;height:72px;border-radius:22px;background:rgba(255,255,255,.2);color:#fff}
+.tg-ico svg{width:36px;height:36px;transform:translateX(-1px)}
+.tg-text{position:relative;flex:1;min-width:220px;display:grid;gap:2px}
+.tg-text small{text-transform:uppercase;letter-spacing:.14em;font:700 12px var(--f-d);opacity:.85}
+.tg-text b{font:800 clamp(20px,2.6vw,28px) var(--f-d);line-height:1.2}
+.tg-text em{font-style:normal;opacity:.9;font-weight:600}
+.tg-btn{position:relative;display:inline-flex;align-items:center;gap:10px;background:#fff;color:#1b7cf0;font:700 16px var(--f-b);padding:15px 26px;border-radius:14px;box-shadow:0 12px 26px -10px rgba(0,0,0,.4)}
+.tg-btn i{font-style:normal;transition:transform .2s}.tgband:hover .tg-btn i{transform:translateX(5px)}
+@media(max-width:640px){.tgband{padding:24px;gap:16px}.tg-btn{width:100%;justify-content:center}.tg-ico{width:60px;height:60px}}
