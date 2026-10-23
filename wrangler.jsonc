@@ -4,6 +4,7 @@
   "compatibility_date": "2025-10-01",
   "compatibility_flags": ["nodejs_compat"],
   "keep_vars": true,
+  "kv_namespaces": [{ "binding": "KV", "id": "ae5e72e760c5464dad760c831a5712ae" }],
   "assets": {
     "directory": "./public",
     "run_worker_first": ["/api/*"]
